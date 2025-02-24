@@ -1,0 +1,119 @@
+/* Resume Container */
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1e3a8a, #111827, #6d28d9);
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Heading */
+.resume-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* PDF Viewer */
+.pdf-viewer {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  max-height: 80vh;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.pdf-viewer iframe {
+  width: 100%;
+  min-height: 300px;
+  max-height: 80vh;
+  border: none;
+}
+/* Download Button */
+.download-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Animation */
+.download-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+  border-radius: 50%;
+}
+
+.download-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.download-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.7);
+}
+
+/* Optional: Add a floating animation to the button */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.download-button {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resume-heading {
+    font-size: 2rem;
+  }
+
+  .pdf-viewer {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    overflow: hidden;
+  }
+
+  .download-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}

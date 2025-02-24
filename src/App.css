@@ -1,0 +1,80 @@
+body {
+  background-color: linear-gradient(
+    135deg,
+    #1e3a8a,
+    #111827,
+    #6d28d9
+  ) !important;
+  margin: 0;
+  padding: 0;
+}
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: linear-gradient(135deg, #1e3a8a, #111827, #6d28d9);
+  color: white;
+  padding: 4rem 1rem;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3a8a, #111827, #6d28d9);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.hero-subtext {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #9ca3af;
+  z-index: 10;
+}
+
+.hero-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.hero-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.hero-button.active {
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.5);
+}
+
+.hero-button.inactive {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+.hero-button.inactive:hover {
+  background-color: #2563eb;
+  color: white;
+}

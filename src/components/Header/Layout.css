@@ -1,0 +1,81 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.slider-container {
+  width: 60px;
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.slider-container:hover {
+  width: 150px;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.slider-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  gap: 10px; /* Space between icon and text */
+}
+
+.slider-item:hover {
+  background-color: #555;
+}
+
+.slider-item .name {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  display: none;
+}
+
+.slider-container:hover .slider-item .name {
+  opacity: 1;
+  display: inline;
+}
+
+/* Social Icons Section */
+.slider-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.slider-footer .icon {
+  color: white;
+  font-size: 20px;
+  transition: color 0.3s ease-in-out;
+}
+
+.slider-footer .icon:hover {
+  color: #bbb;
+}
+.content {
+  flex: 1;
+  background-color: white;
+  overflow-y: auto;
+}
