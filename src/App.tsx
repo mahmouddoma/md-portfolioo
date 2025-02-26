@@ -12,7 +12,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={"/md-portfolioo"}>
       <Routes>
         {" "}
         <Route

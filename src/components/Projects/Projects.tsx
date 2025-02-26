@@ -131,7 +131,7 @@ export const projects: Array<{
     category: "React",
     icon: "react",
     image: "./Images/react.jpg",
-    link: "https://mahmouddoma.github.io/Weather-App/",
+    link: "https://mahmouddoma.github.io/md-portfolioo/",
   },
   {
     id: 11,
