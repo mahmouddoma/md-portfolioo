@@ -32,7 +32,7 @@ interface ProjectsProps {
   selectedCategory: string;
 }
 type IconKey = keyof typeof iconComponents;
-const categories = ["All", "React", "Angular", "JavaScript", "HTML/CSS"];
+const categories = ["All", "Angular", "React", "JavaScript", "HTML/CSS"];
 
 export const projects: Array<{
   id: number;
@@ -44,6 +44,36 @@ export const projects: Array<{
   link: string;
 }> = [
   {
+    id: 101, // New ID
+    title: "Osos Al-Riadah",
+    description:
+      "A comprehensive real estate services platform built with Angular, featuring property listings, search, and dynamic content management.",
+    category: "Angular",
+    icon: "angular",
+    image: "./Images/osos.png", 
+    link: "https://osos-alriadah.com/",
+  },
+  {
+    id: 102, // New ID
+    title: "Ajyal Al-Quran School",
+    description:
+      "An educational platform for a Quran school, providing course information, registration, and student resources. Built with Angular.",
+    category: "Angular",
+    icon: "angular",
+    image: "./Images/ajyal.png",
+    link: "https://ajyal-alquran.com/",
+  },
+  {
+    id: 103, // New ID
+    title: "Zaytona Agriculture",
+    description:
+      "An agricultural solutions website showcasing products and services (fertilizers, consultancy) with a clean, responsive Angular UI.",
+    category: "Angular",
+    icon: "angular",
+    image: "./Images/zaytona.png",
+    link: "https://zaytona.info/",
+  },
+  {
     id: 1,
     title: "E-Commerce Using Angular",
     description:
@@ -53,16 +83,6 @@ export const projects: Array<{
     image: "./Images/e-commerce.jpg",
     link: "https://mahmouddoma.github.io/E-Commerce-Angular-17/home",
   },
-
-  // {
-  //   id: 3,
-  //   title: "CSS Framework / Bootstrap",
-  //   description: "Custom CSS / Bootstrap utility framework",
-  //   category: "HTML/CSS",
-  //   icon: "css3",
-  //   image: "./Images/css.jpg",
-  //   link: "https://mahmouddoma.github.io/AlElmam/",
-  // },
   {
     id: 10,
     title: "HTML Framework / Bootstrap",
@@ -188,9 +208,9 @@ const Projects = ({ selectedCategory }: ProjectsProps) => {
           <motion.button
             key={category}
             className={`category-button ${
-              selectedCategory === category ? "active" : "inactive"
+              currentCategory === category ? "active" : "inactive"
             }`}
-            onClick={() => setCurrentCategory(category)}
+             onClick={() => setCurrentCategory(category)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, y: -10 }}

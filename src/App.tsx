@@ -7,12 +7,14 @@ import { useState } from "react";
 import Resume from "./components/Resume/Resume";
 import Experience from "./components/Experience/Experience";
 import ContactMe from "./components/contact/Contact";
+import Particles from "./components/Hero/Particles";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
     <BrowserRouter basename={"/md-portfolioo"}>
+      <Particles /> 
       <Routes>
         {" "}
         <Route

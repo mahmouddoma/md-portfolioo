@@ -1,6 +1,5 @@
 import "./Hero.css";
 import { motion } from "framer-motion";
-import Particles from "./Particles";
 import Blob from "./Blob";
 import { useNavigate } from "react-router-dom";
 import {
@@ -18,6 +17,7 @@ import {
   SiJquery,
   SiGithub,
 } from "react-icons/si";
+import { span } from "framer-motion/client";
 
 interface HeroProps {
   selectedCategory: string;
@@ -100,13 +100,14 @@ function Hero({ selectedCategory, setSelectedCategory }: HeroProps) {
     >
       {/* Background Animations */}
       <div className="hero-background">
-        <motion.div
+        {/* Particles removed - now global */
+          /* <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
           <Particles />
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -119,80 +120,173 @@ function Hero({ selectedCategory, setSelectedCategory }: HeroProps) {
 
       {/* Hero Content Wrapper */}
       <div className="hero-content">
-        {/* Image Section */}
-        <motion.img
-          src="./Images/upscalemedia-transformed.jpeg"
-          loading="lazy"
-          alt="Mahmoud Doma"
-          className="hero-image"
-          variants={imageVariants}
-          whileHover={{ scale: 1.05 }}
-        />
-        {/* Contact Information */}
-
-        {/* Text Section */}
-        <div className="hero-text">
-          <motion.h1 className="hero-heading" variants={headingVariants}>
-            Hello, I'm Mahmoud Doma 👋
-          </motion.h1>
-          <motion.p className="hero-contact" variants={subtextVariants}>
-            📍 Address 1: Al Sharqiya, Egypt
-          </motion.p>{" "}
-          <motion.p className="hero-contact" variants={subtextVariants}>
-            📍 Address 2: Jiza, Egypt
-          </motion.p>
-          <motion.p className="hero-contact" variants={subtextVariants}>
-            📞 Phone: +20 1093430526
-          </motion.p>
-          <motion.p className="hero-subtext" variants={subtextVariants}>
-            A passionate <strong>Front-End Developer</strong> with expertise in
-            <strong> Angular & React</strong>, crafting high-performance,
-            scalable, and user-friendly web applications.
-          </motion.p>
-          <motion.p className="hero-description" variants={subtextVariants}>
-            I specialize in **building modern UI/UX experiences**, converting
-            design mockups into **interactive, responsive web interfaces**, and
-            integrating **APIs** to create seamless applications. 🚀
-          </motion.p>
-          {/* Buttons */}
-          <motion.div className="hero-buttons" variants={containerVariants}>
-            {categories.map(({ name, icon }) => (
-              <motion.button
-                key={name}
-                onClick={() => handleCategorySelect(name)}
-                className={`hero-button ${
-                  selectedCategory === name ? "active" : "inactive"
-                }`}
-                variants={buttonVariants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {icon || name}
-              </motion.button>
-            ))}
+        {/* Left Side - Text Content */}
+        <div className="hero-text-section">
+          <motion.div className="hero-badge" variants={subtextVariants}>
+            <span className="badge-icon">💻</span>
+            <span className="badge-text">Available for Freelance</span>
           </motion.div>
-          {/* Call to Action */}
+
+          <motion.h1 className="hero-heading" variants={headingVariants}>
+            Hi, I'm <span className="highlight">Mahmoud Doma</span>
+          </motion.h1>
+          
+          <motion.h2 className="hero-role" variants={subtextVariants}>
+            Front-End Developer & UI/UX Enthusiast
+          </motion.h2>
+
+          <motion.p className="hero-subtext" variants={subtextVariants}>
+            Transforming ideas into <strong>beautiful, responsive</strong> web
+            experiences with <strong>Angular & React</strong>. Specialized in
+            crafting intuitive user interfaces that users love.
+          </motion.p>
+
+          <motion.div className="hero-stats" variants={subtextVariants}>
+            <div className="stat-item">
+              <span className="stat-number">1+</span>
+              <span className="stat-label">Years Experience</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">10+</span>
+              <span className="stat-label">Projects Completed</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">100%</span>
+              <span className="stat-label">Client Satisfaction</span>
+            </div>
+          </motion.div>
+
+          {/* Quick Contact Icons */}
+          <motion.div className="quick-contact" variants={subtextVariants}>
+            <a 
+              href="mailto:devdoma2002@gmail.com" 
+              title="devdoma2002@gmail.com"
+              aria-label="Email"
+            >
+              📧
+            </a>
+            <a 
+              href="tel:+201093490526" 
+              title="+20 109 349 0526"
+              aria-label="Phone"
+            >
+              📞
+            </a>
+            <a
+              href="https://www.linkedin.com/in/mahmoud-doma-4520a222a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn Profile"
+              aria-label="LinkedIn"
+            >
+              💼
+            </a>
+            <span title="Cairo, Egypt">📍 Cairo, Egypt</span>
+          </motion.div>
+
+          {/* CTA Button */}
           <motion.div className="cta-buttons" variants={containerVariants}>
             <motion.a
-              href="https://mahmouddoma.github.io/Portfolio0/"
-              className="hero-button primary"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              View My Portfolio 💼
-            </motion.a>
-
-            <motion.a
               href="mailto:devdoma2002@gmail.com"
-              className="hero-button secondary"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="hero-button primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Contact Me 📩
+              Let's Work Together 🚀
             </motion.a>
           </motion.div>
         </div>
+
+        {/* Right Side - Visual Element */}
+        <motion.div 
+          className="hero-visual"
+          variants={imageVariants}
+        >
+          <div className="code-window">
+            <div className="window-header">
+              <div className="window-buttons">
+                <span className="btn red"></span>
+                <span className="btn yellow"></span>
+                <span className="btn green"></span>
+              </div>
+              <span className="window-title">app.tsx</span>
+            </div>
+            <div className="code-content">
+              <pre>
+                <code>
+{`/**
+ * @Developer Mahmoud Doma
+ * @Role Front-End Developer & UI/UX Enthusiast
+ * @Location Cairo, Egypt
+ */
+
+const profile = {
+  experience: "1+ years",
+  
+  skills: {
+    core: ["HTML5", "CSS3", "JavaScript", "TypeScript"],
+    frameworks: ["Angular 19", "React.js"],
+    styling: ["SCSS", "Bootstrap", "Tailwind CSS"],
+    tools: ["Git", "VS Code", "Figma"]
+  },
+  
+  expertise: [
+    "Building responsive web applications",
+    "API integration & async handling",
+    "Modern UI/UX customization",
+    "Real-time applications",
+    "Git version control"
+  ],
+  
+  background: [
+    "Technical Support Specialist",
+    "Software Implementation (ERP)",
+    "Front-End Development"
+  ],
+  
+  passion: "Continuous learning & creating exceptional UX",
+  
+  status: "Available for Freelance 💻"
+};
+
+// 2 years intensive experience in:
+// HTML • CSS • JavaScript • TypeScript
+// Angular • SCSS • Bootstrap • React.js
+
+export default profile;`}
+                </code>
+              </pre>
+            </div>
+          </div>
+          
+          {/* Tech Stack Icons */}
+          <div className="tech-stack">
+            <FaReact className="tech-icon react" />
+            <FaAngular className="tech-icon angular" />
+            <SiTypescript className="tech-icon typescript" />
+            <FaHtml5 className="tech-icon html" />
+            <FaCss3Alt className="tech-icon css" />
+          </div>
+        </motion.div>
       </div>
+
+      {/* Tech Filter Buttons - Below Content */}
+      <motion.div className="hero-buttons" variants={containerVariants}>
+        {categories.map(({ name, icon }) => (
+          <motion.button
+            key={name}
+            onClick={() => handleCategorySelect(name)}
+            className={`hero-button ${
+              selectedCategory === name ? "active" : "inactive"
+            }`}
+            variants={buttonVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {icon || name}
+          </motion.button>
+        ))}
+      </motion.div>
     </motion.section>
   );
 }

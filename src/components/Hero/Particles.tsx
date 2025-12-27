@@ -2,20 +2,20 @@ import { motion } from "framer-motion";
 import { FaReact, FaAngular, FaJs, FaHtml5, FaCss3 } from "react-icons/fa";
 
 const techIcons = [
-  <FaReact />,
-  <FaAngular />,
-  <FaJs />,
-  <FaHtml5 />,
-  <FaCss3 />,
+  <FaReact style={{ color: "#61dafb" }} />,
+  <FaAngular style={{ color: "#dd0031" }} />,
+  <FaJs style={{ color: "#f7df1e" }} />,
+  <FaHtml5 style={{ color: "#e34c26" }} />,
+  <FaCss3 style={{ color: "#264de4" }} />,
 ];
 
 const Particles = () => {
-  const particles = Array.from({ length: 10 }).map((_, i) => ({
+  const particles = Array.from({ length: 15 }).map((_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
     size: Math.random() * 40 + 20,
-    duration: Math.random() * 5 + 5,
+    duration: Math.random() * 10 + 10,
     icon: techIcons[i % techIcons.length],
   }));
 
@@ -25,11 +25,13 @@ const Particles = () => {
         <motion.div
           key={particle.id}
           style={{
-            position: "absolute",
+            position: "fixed",  
             top: `${particle.y}%`,
             left: `${particle.x}%`,
             fontSize: `${particle.size}px`,
-            zIndex: 1,
+            zIndex: 5, 
+            opacity: 0.4, 
+            pointerEvents: "none", 
           }}
           animate={{
             y: [0, -50, 0],

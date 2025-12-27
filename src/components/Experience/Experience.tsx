@@ -1,25 +1,54 @@
 import { motion } from "framer-motion";
-// import { useEffect, useRef } from "react";
-// import { useInView } from "framer-motion";
+import { 
+  FaBriefcase, 
+  FaGraduationCap, 
+  FaCode, 
+  FaTrophy,
+  FaCalendarAlt 
+} from "react-icons/fa";
 import "./Experience.css";
 
 const Experience = () => {
   const experiences = [
     {
-      id: 1,
-      company: "Izam Inc.",
-      role: "Software Implementer",
-      duration: "April 2024 - Oct 2024",
+      id: 0,
+      role: "Front-End Angular Developer",
+      company: "Niletronix | Spirit of Innovation",
+      duration: "Oct 2024 - Present",
       description:
-        "Developed and optimized web interfaces using HTML, CSS, JavaScript, and jQuery...",
+        "Developing smart, simple, and reliable web solutions using Angular. Contributing to innovative systems for modern workplaces with a focus on high-performance and user-friendly interfaces.",
+      tags: ["Angular", "Smart Solutions", "Integration"],
+      icon: <FaCode />
+    },
+    {
+      id: 1,
+      role: "Front-End Developer",
+      company: "Freelance",
+      duration: "Jan 2024 - Present",
+      description:
+        "Building responsive, user-friendly web applications using Angular 19, JavaScript, TypeScript, and modern UI frameworks. Delivering high-quality code and exceptional user experiences for various clients.",
+      tags: ["Angular", "React", "TypeScript", "Tailwind"],
+      icon: <FaCode />
     },
     {
       id: 2,
-      company: "Freelance",
-      role: "Front-End Developer",
-      duration: "January 2024 - Present",
+      role: "Software Implementer",
+      company: "Izam Inc.",
+      duration: "April 2024 - Oct 2024",
       description:
-        "Front-End Developer with 1 year of experience creating responsive web applications...",
+        "Implemented and optimized ERP software solutions. Collaborated with technical teams to ensure seamless integration and user adoption.",
+      tags: ["ERP", "Technical Support", "Implementation"],
+      icon: <FaBriefcase />
+    },
+    {
+      id: 3,
+      role: "Technical Support Specialist",
+      company: "Amancom - Al Giza",
+      duration: "Apr 2025 - Aug 2025",
+      description:
+        "Provided technical assistance and troubleshooting for hardware, software, and network-related issues. Supported clients by identifying problems, offering solutions, and ensuring minimal downtime. Installed, configured, and maintained computer systems and applications to meet user needs. Documented support cases and collaborated with the IT team to improve service efficiency.",
+      tags: ["Technical Support", "Troubleshooting", "System Maintenance"],
+      icon: <FaBriefcase />
     },
   ];
 
@@ -27,9 +56,9 @@ const Experience = () => {
     {
       id: 1,
       institution: "Zagazig University",
-      degree: "Bachelor of Arts , French Department",
+      degree: "Bachelor of Arts, French Department",
       duration: "2020 - 2024",
-      description: "Graduated with a Bachelor's degree in French Language...",
+      description: "Graduated with a focus on linguistics and cultural studies.",
     },
     {
       id: 2,
@@ -37,150 +66,149 @@ const Experience = () => {
       degree: "Cross Skilling Angular Nanodegree",
       duration: "August 2022",
       description:
-        "Completed the Angular Nanodegree program, gaining expertise in Angular development...",
+        "Mastered Angular fundamentals, routing, state management, and building single-page applications.",
     },
   ];
 
   const skills = [
-    "Angular",
-    "React",
-    "JavaScript",
-    "TypeScript",
-    "HTML/CSS",
-    "Bootstrap",
-    "Tailwind CSS",
-    "Git",
-    "GitHub",
-    "Responsive Design",
-    "SQL Server",
+    { name: "Angular 19", level: 95 },
+    { name: "TypeScript", level: 90 },
+    { name: "JavaScript (ES6+)", level: 90 },
+    { name: "HTML5 / CSS3", level: 95 },
+    { name: "React.js", level: 75 },
+    { name: "SCSS / SASS", level: 85 },
+    { name: "Bootstrap 5", level: 90 },
+    { name: "Tailwind CSS", level: 85 },
+    { name: "Git / GitHub", level: 80 },
+    { name: "REST APIs", level: 85 },
   ];
 
-  const achievements = [
-    "Completed Udacity Cross Skilling Angular Nanodegree (August 2022)",
-    "Developed multiple full-stack projects using Angular",
-  ];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
 
   return (
-    <div className="experience-container">
-      <motion.h1
-        className="experience-heading"
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+    <section className="experience-section">
+      <div className="experience-background"></div>
+      
+      <motion.div 
+        className="content-container"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
       >
-        My Experience
-      </motion.h1>
+        {/* Header */}
+        <motion.div className="section-header" variants={itemVariants}>
+          <span className="section-subtitle">Career Path</span>
+          <h2 className="section-title">Experience & <span className="highlight">Education</span></h2>
+          <p className="section-description">
+            My professional journey and academic background in tech.
+          </p>
+        </motion.div>
 
-      {/* Experience Section */}
-      <div className="timeline">
-        {experiences.map((exp, index) => {
-          return (
-            <motion.div
-              key={exp.id}
-              className="timeline-item"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="timeline-content">
-                <h3 className="company">{exp.company}</h3>
-                <p className="role">{exp.role}</p>
-                <p className="duration">{exp.duration}</p>
-                <p className="description">{exp.description}</p>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Education Section */}
-      <div className="education-section">
-        <motion.h2
-          className="section-heading"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Education
-        </motion.h2>
-        <div className="timeline">
-          {education.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              className="timeline-item"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="timeline-content">
-                <h3 className="institution">{edu.institution}</h3>
-                <p className="degree">{edu.degree}</p>
-                <p className="duration">{edu.duration}</p>
-                <p className="description">{edu.description}</p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Timeline - Experience */}
+        <div className="timeline-container">
+          <h3 className="timeline-heading">
+            <FaBriefcase className="heading-icon" /> Work Experience
+          </h3>
+          
+          <div className="timeline">
+            {experiences.map((exp, index) => (
+              <motion.div 
+                key={exp.id} 
+                className="timeline-item"
+                variants={itemVariants}
+                whileHover={{ x: 10 }}
+              >
+                <div className="timeline-marker"></div>
+                <div className="timeline-content card-glass">
+                  <div className="timeline-date">
+                    <FaCalendarAlt /> {exp.duration}
+                  </div>
+                  <h3 className="timeline-role">{exp.role}</h3>
+                  <h4 className="timeline-company">{exp.company}</h4>
+                  <p className="timeline-description">{exp.description}</p>
+                  <div className="timeline-tags">
+                    {exp.tags.map(tag => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Skills Section */}
-      <div className="skills-section">
-        <motion.h2
-          className="section-heading"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Skills
-        </motion.h2>
-        <div className="skills-list">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              className="skill"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              {skill}
-            </motion.div>
-          ))}
+        {/* Timeline - Education */}
+        <div className="timeline-container education-container">
+          <h3 className="timeline-heading">
+            <FaGraduationCap className="heading-icon" /> Education
+          </h3>
+          
+          <div className="timeline">
+            {education.map((edu, index) => (
+              <motion.div 
+                key={edu.id} 
+                className="timeline-item"
+                variants={itemVariants}
+                whileHover={{ x: 10 }}
+              >
+                <div className="timeline-marker edu"></div>
+                <div className="timeline-content card-glass">
+                  <div className="timeline-date">
+                    <FaCalendarAlt /> {edu.duration}
+                  </div>
+                  <h3 className="timeline-role">{edu.degree}</h3>
+                  <h4 className="timeline-company">{edu.institution}</h4>
+                  <p className="timeline-description">{edu.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Achievements Section */}
-      <div className="achievements-section">
-        <motion.h2
-          className="section-heading"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Achievements
-        </motion.h2>
-        <ul className="achievements-list">
-          {achievements.map((achievement, index) => (
-            <motion.li
-              key={index}
-              className="achievement"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              {achievement}
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-    </div>
+        {/* Skills Grid */}
+        <motion.div className="skills-container" variants={itemVariants}>
+          <h3 className="timeline-heading centered">
+            <FaTrophy className="heading-icon" /> Technical Skills
+          </h3>
+          
+          <div className="skills-grid">
+            {skills.map((skill, index) => (
+              <motion.div 
+                key={index} 
+                className="skill-card card-glass"
+                whileHover={{ scale: 1.05, translateY: -5 }}
+              >
+                <div className="skill-info">
+                  <span className="skill-name">{skill.name}</span>
+                  <span className="skill-percentage">{skill.level}%</span>
+                </div>
+                <div className="progress-bar">
+                  <motion.div 
+                    className="progress-fill"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                  ></motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+      </motion.div>
+    </section>
   );
 };
 

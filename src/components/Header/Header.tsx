@@ -1,32 +1,45 @@
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { 
+  HiHome, 
+  HiMail 
+} from "react-icons/hi";
+import { 
+  MdWorkHistory 
+} from "react-icons/md";
+import { 
+  FaLinkedin, 
+  FaGithub, 
+  FaFileAlt,
+  FaLaptopCode
+} from "react-icons/fa";
 import "./Header.css";
 
 const pages = [
-  { id: 1, name: "Home", icon: <i className="bi bi-house"></i>, path: "/" },
+  { id: 1, name: "Home", icon: <HiHome />, path: "/" },
   {
     id: 2,
     name: "Projects",
-    icon: <i className="bi bi-person-workspace"></i>,
+    icon: <FaLaptopCode />,
     path: "/projects",
   },
   {
     id: 3,
     name: "Resume",
-    icon: <i className="bi bi-file-earmark-person-fill"></i>,
+    icon: <FaFileAlt />,
     path: "/resume",
   },
   {
     id: 4,
     name: "Experience",
-    icon: <i className="bi bi-briefcase-fill"></i>,
+    icon: <MdWorkHistory />,
     path: "/experience",
   },
   {
     id: 5,
     name: "Contact",
-    icon: <i className="bi bi-envelope"></i>,
+    icon: <HiMail />,
     path: "/contact",
   },
 ];
@@ -34,12 +47,12 @@ const pages = [
 const socialIcons = [
   {
     id: 1,
-    icon: <i className="bi bi-linkedin"></i>,
+    icon: <FaLinkedin />,
     link: "https://www.linkedin.com/in/mahmoud-doma-4520a222a/",
   },
   {
     id: 2,
-    icon: <i className="bi bi-github"></i>,
+    icon: <FaGithub />,
     link: "https://github.com/mahmouddoma",
   },
 ];
@@ -72,18 +85,19 @@ function Header() {
         ))}
       </motion.div>
 
-      <div className="slider-footer">
+      <div className={`slider-footer ${isOpen ? "expanded" : ""}`}>
         {socialIcons.map((social) => (
-          <a
-            key={social.id}
-            href={social.link}
-            target="_blank"
+          <a 
+            key={social.id} 
+            href={social.link} 
+            target="_blank" 
             rel="noopener noreferrer"
           >
             <span className="icon">{social.icon}</span>
           </a>
         ))}
       </div>
+
     </div>
   );
 }
