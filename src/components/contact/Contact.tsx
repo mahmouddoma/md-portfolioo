@@ -1,19 +1,15 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { 
-  FaPaperPlane, 
-  FaCheckCircle, 
-  FaEnvelope, 
-  FaMapMarkerAlt, 
-  FaLinkedin, 
-  FaGithub 
-} from "react-icons/fa";
+import { useState, FormEvent } from "react";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaCheckCircle, FaSpinner } from "react-icons/fa";
+import { portfolioData } from "../../data/portfolioData";
 import "./Contact.css";
 
-const Contact = () => {
+export default function Contact() {
+  const { personalInfo } = portfolioData;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -21,7 +17,7 @@ const Contact = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -34,13 +30,12 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Failed to send message");
+      if (!response.ok) {
+        throw new Error("Unable to submit message. Please try again or reach out directly.");
+      }
 
       setSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => {
-        setSuccess(false);
-      }, 5000);
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -48,158 +43,181 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      title: "Email",
-      value: "devdoma2002@gmail.com",
-      link: "mailto:devdoma2002@gmail.com"
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      title: "Location",
-      value: "Cairo, Egypt",
-      link: "#"
-    },
-    {
-      icon: <FaLinkedin />,
-      title: "LinkedIn",
-      value: "Mahmoud Doma",
-      link: "https://www.linkedin.com/in/mahmoud-doma-4520a222a/"
-    },
-    {
-      icon: <FaGithub />,
-      title: "GitHub",
-      value: "mahmouddoma",
-      link: "https://github.com/mahmouddoma"
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.2 } 
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   return (
-    <section className="contact-section">
-      <div className="contact-background"></div>
-      
-      <motion.div 
-        className="contact-content-wrapper"
-        variants={containerVariants} 
-        initial="hidden" 
-        animate="visible"
-      >
-        <motion.div className="contact-header" variants={itemVariants}>
-          <h2 className="section-title">Get in <span className="highlight">Touch</span></h2>
-          {/* <p className="section-subtitle">
-            Have a project in mind or just want to say hi? I'd love to hear from you.
-          </p> */}
-        </motion.div>
-
-        <div className="contact-grid">
-          {/* Contact Info Cards */}
-          <motion.div className="contact-info-container" variants={itemVariants}>
-            {contactInfo.map((item, index) => (
-              <motion.a 
-                href={item.link} 
-                key={index}
-                target={item.link !== "#" ? "_blank" : "_self"}
-                rel="noreferrer"
-                className="contact-card"
-                whileHover={{ scale: 1.05, x: 10 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="card-icon">{item.icon}</div>
-                <div className="card-details">
-                  <h3>{item.title}</h3>
-                  <p>{item.value}</p>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div className="form-container" variants={itemVariants}>
-            <form onSubmit={handleSubmit} className="contact-form">
-              <h3 className="form-title">Send a Message</h3>
-              
-              <div className="input-wrapper">
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder=" "
-                />
-                <label htmlFor="name">Your Name</label>
-              </div>
-
-              <div className="input-wrapper">
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder=" "
-                />
-                <label htmlFor="email">Your Email</label>
-              </div>
-
-              <div className="input-wrapper">
-                <textarea
-                  id="message"
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder=" "
-                  rows={4}
-                />
-                <label htmlFor="message">Your Message</label>
-              </div>
-
-              <motion.button
-                type="submit"
-                className="submit-btn"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={loading}
-              >
-                {loading ? (
-                  <div className="spinner"></div> // You might need to style this or import a spinner
-                ) : success ? (
-                  <>Sent Successfully <FaCheckCircle /></>
-                ) : (
-                  <>Send Message <FaPaperPlane /></>
-                )}
-              </motion.button>
-
-              {success && (
-                <motion.p 
-                  className="success-text"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                >
-                  Thanks! I'll get back to you soon.
-                </motion.p>
-              )}
-              {error && <p className="error-text">Error: {error}</p>}
-            </form>
-          </motion.div>
+    <section id="contact" className="section-wrapper contact-section">
+      <div className="container-custom">
+        {/* Section Header */}
+        <div className="section-header-block">
+          <span className="section-eyebrow">Get In Touch</span>
+          <h2 className="section-heading">Let's Discuss New Opportunities & Systems</h2>
+          <p className="section-subheading">
+            Whether you have an enterprise project requirement, an engineering role, or a freelance inquiry, my inbox is always open.
+          </p>
         </div>
-      </motion.div>
+
+        <div className="contact-layout-grid">
+          {/* Left Column: Direct Info Cards */}
+          <div className="contact-info-col">
+            <h3 className="contact-subheading">Direct Contact Channels</h3>
+
+            <div className="contact-cards-stack">
+              <a href={`mailto:${personalInfo.email}`} className="contact-channel-card solid-card">
+                <div className="channel-icon-box">
+                  <FaEnvelope />
+                </div>
+                <div className="channel-info">
+                  <span className="channel-label">Email Address</span>
+                  <span className="channel-value">{personalInfo.email}</span>
+                </div>
+              </a>
+
+              <a href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`} className="contact-channel-card solid-card">
+                <div className="channel-icon-box">
+                  <FaPhoneAlt />
+                </div>
+                <div className="channel-info">
+                  <span className="channel-label">Direct Phone</span>
+                  <span className="channel-value">{personalInfo.phone}</span>
+                </div>
+              </a>
+
+              <div className="contact-channel-card solid-card static">
+                <div className="channel-icon-box">
+                  <FaMapMarkerAlt />
+                </div>
+                <div className="channel-info">
+                  <span className="channel-label">Base Location</span>
+                  <span className="channel-value">{personalInfo.location} (Open to Relocation & Remote)</span>
+                </div>
+              </div>
+
+              <div className="social-channels-card solid-card">
+                <span className="channel-label">Professional Profiles</span>
+                <div className="social-btn-row">
+                  <a
+                    href={personalInfo.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-btn-item"
+                  >
+                    <FaLinkedin />
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href={personalInfo.socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-btn-item"
+                  >
+                    <FaGithub />
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Solid Form */}
+          <div className="contact-form-col">
+            <div className="contact-form-card solid-card">
+              <h3 className="form-card-title">Send a Direct Message</h3>
+
+              {success ? (
+                <div className="form-success-banner">
+                  <FaCheckCircle className="success-icon" />
+                  <h4>Message Sent Successfully</h4>
+                  <p>Thank you for reaching out. I will review your message and reply promptly.</p>
+                  <button
+                    onClick={() => setSuccess(false)}
+                    className="btn-solid-secondary btn-sm"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="solid-contact-form">
+                  <div className="form-group-row">
+                    <div className="form-field">
+                      <label htmlFor="name" className="field-label">Your Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. John Doe"
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-field">
+                      <label htmlFor="email" className="field-label">Your Email *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="e.g. john@company.com"
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="subject" className="field-label">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="e.g. Front-End Project Inquiry / Role"
+                      className="form-input"
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="message" className="field-label">Message *</label>
+                    <textarea
+                      id="message"
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Briefly describe your project, timeline, or inquiry..."
+                      className="form-input form-textarea"
+                    />
+                  </div>
+
+                  {error && (
+                    <div className="form-error-banner">
+                      <span>{error}</span>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="btn-solid-accent form-submit-btn"
+                  >
+                    {loading ? (
+                      <>
+                        <FaSpinner className="spinner-icon" />
+                        <span>Transmitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Message</span>
+                        <FaPaperPlane />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
-};
-
-export default Contact;
+}

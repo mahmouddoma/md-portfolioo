@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Agent & helper scripts
+.agents/
+skills-lock.json
+scripts/

@@ -1,0 +1,158 @@
+/* ==========================================================================
+   SKILLS SECTION — Open Editorial Domain Columns (Light, Airy & Modern)
+   ========================================================================== */
+
+.skills-editorial-section {
+  position: relative;
+  padding: 7rem 0;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.skills-editorial-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .skills-editorial-container {
+    padding: 0 3.5rem;
+  }
+}
+
+/* Header */
+.skills-editorial-header {
+  margin-bottom: 4rem;
+}
+
+.skills-editorial-title {
+  font-size: clamp(2.25rem, 3.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  line-height: 1.15;
+}
+
+.skills-editorial-subheading {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Open Editorial Domain Columns Grid
+   ========================================================================== */
+
+.skills-domains-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  border-top: 1px solid var(--border-medium);
+  padding-top: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .skills-domains-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .skills-domains-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* Domain Column */
+.domain-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1100px) {
+  .domain-column:not(:last-child) {
+    border-right: 1px solid var(--border-subtle);
+    padding-right: 2rem;
+  }
+}
+
+/* Domain Header */
+.domain-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.domain-index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.domain-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.domain-statement {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Skills List */
+.domain-skills-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+}
+
+.domain-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.domain-skill-item:hover {
+  transform: translateX(4px);
+}
+
+.skill-name-text {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.domain-skill-item:hover .skill-name-text {
+  color: var(--accent);
+}
+
+.skill-detail-text {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}

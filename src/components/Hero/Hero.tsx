@@ -1,294 +1,175 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { portfolioData } from "../../data/portfolioData";
+import MagneticButton from "../ui/MagneticButton";
 import "./Hero.css";
-import { motion } from "framer-motion";
-import Blob from "./Blob";
-import { useNavigate } from "react-router-dom";
-import {
-  FaReact,
-  FaAngular,
-  FaHtml5,
-  FaCss3Alt,
-  FaGitAlt,
-} from "react-icons/fa";
-import {
-  SiJavascript,
-  SiTypescript,
-  SiTailwindcss,
-  SiBootstrap,
-  SiJquery,
-  SiGithub,
-} from "react-icons/si";
-import { span } from "framer-motion/client";
 
-interface HeroProps {
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-}
-const categories = [
-  { name: "All", icon: null },
-  { name: "Angular", icon: <FaAngular className="icon text-red-600" /> },
-  { name: "React", icon: <FaReact className="icon text-blue-500" /> },
-  {
-    name: "JavaScript",
-    icon: <SiJavascript className="icon text-yellow-500" />,
-  },
-  { name: "TypeScript", icon: <SiTypescript className="icon text-blue-500" /> },
-  { name: "HTML", icon: <FaHtml5 className="icon text-orange-500" /> },
-  { name: "CSS", icon: <FaCss3Alt className="icon text-blue-600" /> },
-  {
-    name: "Tailwind CSS",
-    icon: <SiTailwindcss className="icon text-cyan-500" />,
-  },
-  { name: "Bootstrap", icon: <SiBootstrap className="icon text-purple-600" /> },
-  { name: "jQuery", icon: <SiJquery className="icon text-blue-500" /> },
-  { name: "Git", icon: <FaGitAlt className="icon text-orange-500" /> },
-  {
-    name: "GitHub",
-    icon: <SiGithub className="icon text-gray-900 dark:text-white" />,
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-function Hero({ selectedCategory, setSelectedCategory }: HeroProps) {
-  const navigate = useNavigate();
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
+  const metaRef = useRef<HTMLDivElement>(null);
 
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-    navigate("/projects");
+  const { personalInfo } = portfolioData;
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // 1. Headline lines reveal (clip-path from below)
+      tl.fromTo(
+        ".hero-line-inner",
+        { yPercent: 110 },
+        { yPercent: 0, duration: 1.2, stagger: 0.12 },
+        0.25
+      );
+
+      // 2. Photo reveal
+      tl.fromTo(
+        ".hero-photo-inner",
+        { scale: 1.15, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.3, ease: "power2.out" },
+        0.5
+      );
+
+      tl.fromTo(
+        ".hero-photo-frame",
+        { clipPath: "inset(100% 0 0 0)" },
+        { clipPath: "inset(0% 0 0 0)", duration: 1.1, ease: "power3.inOut" },
+        0.4
+      );
+
+      // 3. Meta info
+      tl.fromTo(
+        ".hero-meta-item",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
+        0.9
+      );
+
+      // 4. CTAs
+      tl.fromTo(
+        ".hero-cta-group",
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        1.1
+      );
+
+      // Parallax on scroll
+      if (sectionRef.current) {
+        gsap.to(".hero-headline-col", {
+          yPercent: -10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        });
+
+        gsap.to(".hero-photo-frame", {
+          yPercent: -5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 2,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const scrollToWork = () => {
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const containerVariants = {
-    hidden: { y: 50 },
-    visible: {
-      y: 0,
-      transition: { delay: 0.2, duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const headingVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.5 } },
-  };
-
-  const subtextVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.5 } },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { delay: 0.8, duration: 0.5 },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { delay: 0.6, duration: 0.5 },
-    },
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <motion.section
-      className="hero-section"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      {/* Background Animations */}
-      <div className="hero-background">
-        {/* Particles removed - now global */
-          /* <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          <Particles />
-        </motion.div> */}
+    <section id="hero" className="hero-section" ref={sectionRef}>
+      <div className="hero-container">
+        {/* Left: Typography */}
+        <div className="hero-headline-col" ref={headlineRef}>
+          {/* Status */}
+          <div className="hero-meta-item hero-status">
+            <span className="status-dot-v2" />
+            <span>{personalInfo.status.text}</span>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1 }}
-        >
-          <Blob />
-        </motion.div>
-      </div>
+          {/* Clean, Commanding, Human-Crafted Editorial Headline */}
+          <h1 className="hero-title-v2">
+            <span className="hero-line">
+              <span className="hero-line-inner">Engineering</span>
+            </span>
+            <span className="hero-line">
+              <span className="hero-line-inner text-accent">Enterprise-Grade</span>
+            </span>
+            <span className="hero-line">
+              <span className="hero-line-inner">Front-End &</span>
+            </span>
+            <span className="hero-line">
+              <span className="hero-line-inner">Real-Time Systems.</span>
+            </span>
+          </h1>
 
-      {/* Hero Content Wrapper */}
-      <div className="hero-content">
-        {/* Left Side - Text Content */}
-        <div className="hero-text-section">
-          <motion.div className="hero-badge" variants={subtextVariants}>
-            <span className="badge-icon">💻</span>
-            <span className="badge-text">Available for Freelance</span>
-          </motion.div>
+          {/* Sub info */}
+          <div className="hero-meta-block" ref={metaRef}>
+            <p className="hero-meta-item hero-bio-v2">
+              {personalInfo.title} & {personalInfo.specialty}. Specialized in sub-second
+              live data streams (SignalR / MQTT), offline-first component architectures, and
+              pixel-perfect Arabic RTL systems.
+            </p>
+          </div>
 
-          <motion.h1 className="hero-heading" variants={headingVariants}>
-            Hi, I'm <span className="highlight">Mahmoud Doma</span>
-          </motion.h1>
-          
-          <motion.h2 className="hero-role" variants={subtextVariants}>
-            Front-End Developer & UI/UX Enthusiast
-          </motion.h2>
-
-          <motion.p className="hero-subtext" variants={subtextVariants}>
-            Transforming ideas into <strong>beautiful, responsive</strong> web
-            experiences with <strong>Angular & React</strong>. Specialized in
-            crafting intuitive user interfaces that users love.
-          </motion.p>
-
-          <motion.div className="hero-stats" variants={subtextVariants}>
-            <div className="stat-item">
-              <span className="stat-number">1+</span>
-              <span className="stat-label">Years Experience</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">10+</span>
-              <span className="stat-label">Projects Completed</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">100%</span>
-              <span className="stat-label">Client Satisfaction</span>
-            </div>
-          </motion.div>
-
-          {/* Quick Contact Icons */}
-          <motion.div className="quick-contact" variants={subtextVariants}>
-            <a 
-              href="mailto:devdoma2002@gmail.com" 
-              title="devdoma2002@gmail.com"
-              aria-label="Email"
-            >
-              📧
-            </a>
-            <a 
-              href="tel:+201093490526" 
-              title="+20 109 349 0526"
-              aria-label="Phone"
-            >
-              📞
-            </a>
-            <a
-              href="https://www.linkedin.com/in/mahmoud-doma-4520a222a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="LinkedIn Profile"
-              aria-label="LinkedIn"
-            >
-              💼
-            </a>
-            <span title="Cairo, Egypt">📍 Cairo, Egypt</span>
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div className="cta-buttons" variants={containerVariants}>
-            <motion.a
-              href="mailto:devdoma2002@gmail.com"
-              className="hero-button primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Let's Work Together 🚀
-            </motion.a>
-          </motion.div>
+          {/* CTAs */}
+          <div className="hero-cta-group">
+            <MagneticButton className="cta-primary-v2" onClick={scrollToWork}>
+              <span>Explore Selected Work</span>
+              <svg className="cta-svg-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </MagneticButton>
+            <MagneticButton className="cta-secondary-v2" onClick={scrollToContact}>
+              <span>Get in Touch</span>
+              <svg className="cta-svg-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </MagneticButton>
+          </div>
         </div>
 
-        {/* Right Side - Visual Element */}
-        <motion.div 
-          className="hero-visual"
-          variants={imageVariants}
-        >
-          <div className="code-window">
-            <div className="window-header">
-              <div className="window-buttons">
-                <span className="btn red"></span>
-                <span className="btn yellow"></span>
-                <span className="btn green"></span>
-              </div>
-              <span className="window-title">app.tsx</span>
-            </div>
-            <div className="code-content">
-              <pre>
-                <code>
-{`/**
- * @Developer Mahmoud Doma
- * @Role Front-End Developer & UI/UX Enthusiast
- * @Location Cairo, Egypt
- */
-
-const profile = {
-  experience: "1+ years",
-  
-  skills: {
-    core: ["HTML5", "CSS3", "JavaScript", "TypeScript"],
-    frameworks: ["Angular 19", "React.js"],
-    styling: ["SCSS", "Bootstrap", "Tailwind CSS"],
-    tools: ["Git", "VS Code", "Figma"]
-  },
-  
-  expertise: [
-    "Building responsive web applications",
-    "API integration & async handling",
-    "Modern UI/UX customization",
-    "Real-time applications",
-    "Git version control"
-  ],
-  
-  background: [
-    "Technical Support Specialist",
-    "Software Implementation (ERP)",
-    "Front-End Development"
-  ],
-  
-  passion: "Continuous learning & creating exceptional UX",
-  
-  status: "Available for Freelance 💻"
-};
-
-// 2 years intensive experience in:
-// HTML • CSS • JavaScript • TypeScript
-// Angular • SCSS • Bootstrap • React.js
-
-export default profile;`}
-                </code>
-              </pre>
-            </div>
+        {/* Right: Photo */}
+        <div className="hero-photo-col" ref={photoRef}>
+          <div className="hero-photo-frame">
+            <img
+              src="./Images/upscalemedia-transformed.jpeg"
+              alt="Mahmoud Doma"
+              className="hero-photo-inner"
+            />
           </div>
-          
-          {/* Tech Stack Icons */}
-          <div className="tech-stack">
-            <FaReact className="tech-icon react" />
-            <FaAngular className="tech-icon angular" />
-            <SiTypescript className="tech-icon typescript" />
-            <FaHtml5 className="tech-icon html" />
-            <FaCss3Alt className="tech-icon css" />
+          {/* Refined subtle credential tags */}
+          <div className="hero-credential-tag tag-top">
+            <span className="credential-dot" />
+            <span>Angular Specialist</span>
           </div>
-        </motion.div>
+          <div className="hero-credential-tag tag-bottom">
+            <span className="credential-dot accent" />
+            <span>2+ Years Enterprise</span>
+          </div>
+        </div>
       </div>
-
-      {/* Tech Filter Buttons - Below Content */}
-      <motion.div className="hero-buttons" variants={containerVariants}>
-        {categories.map(({ name, icon }) => (
-          <motion.button
-            key={name}
-            onClick={() => handleCategorySelect(name)}
-            className={`hero-button ${
-              selectedCategory === name ? "active" : "inactive"
-            }`}
-            variants={buttonVariants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {icon || name}
-          </motion.button>
-        ))}
-      </motion.div>
-    </motion.section>
+    </section>
   );
 }
-
-export default Hero;

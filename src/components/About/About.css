@@ -1,0 +1,126 @@
+/* ==========================================================================
+   ABOUT SECTION V2 — Word-by-Word Scroll Reveal & Architecture Pillars
+   ========================================================================== */
+
+.about-section-v2 {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.about-container-v2 {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .about-container-v2 {
+    padding: 0 4rem;
+  }
+}
+
+.about-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.about-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
+
+/* Large Word-by-Word Reveal Statement */
+.about-reveal-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 5rem;
+  max-width: 1100px;
+}
+
+.about-word {
+  display: inline-block;
+  will-change: opacity;
+  transition: opacity 0.2s ease;
+}
+
+/* Architecture Pillars Grid */
+.pillars-grid-v2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .pillars-grid-v2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pillars-grid-v2 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pillar-card-v2 {
+  position: relative;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  will-change: transform, opacity;
+}
+
+.pillar-card-v2:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar-index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+}
+
+.pillar-title-v2 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.875rem;
+  line-height: 1.35;
+}
+
+.pillar-desc-v2 {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}

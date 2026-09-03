@@ -1,0 +1,87 @@
+/* ==========================================================================
+   TICKER STRIP — High-Contrast Kinetic Marquee
+   ========================================================================== */
+
+.ticker-strip-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1.1rem 0;
+  display: flex;
+  user-select: none;
+  border-top: 1px solid var(--border-medium);
+  border-bottom: 1px solid var(--border-medium);
+  z-index: 5;
+  position: relative;
+}
+
+/* Themes */
+.ticker-strip-wrapper.theme-amber {
+  background-color: var(--accent);
+  color: #0c0d10;
+  border-color: var(--accent);
+}
+
+.ticker-strip-wrapper.theme-amber .ticker-item {
+  color: #0c0d10;
+}
+
+.ticker-strip-wrapper.theme-amber .ticker-symbol {
+  color: rgba(12, 13, 16, 0.6);
+}
+
+.ticker-strip-wrapper.theme-cream {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.ticker-strip-wrapper.theme-cream .ticker-item {
+  color: var(--bg-primary);
+}
+
+.ticker-strip-wrapper.theme-subtle {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.ticker-strip-wrapper.theme-subtle .ticker-symbol {
+  color: var(--accent);
+}
+
+/* Track animation */
+.ticker-track {
+  display: inline-flex;
+  gap: 2.5rem;
+  animation: ticker-slide linear infinite;
+  will-change: transform;
+}
+
+.ticker-track.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes ticker-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ticker-symbol {
+  font-size: 0.85rem;
+}

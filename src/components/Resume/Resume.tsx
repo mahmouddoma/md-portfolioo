@@ -4,15 +4,15 @@ import { FaDownload, FaEye, FaFilePdf } from "react-icons/fa";
 import "./Resume.css";
 
 export default function Resume() {
-  const resumeUrl = "./Resume/Mahmoud Doma Front-End CV.pdf";
+  const resumeUrl = `${import.meta.env.BASE_URL}Mahmoud_Doma_CV.pdf`;
 
   const [isLoading, setIsLoading] = useState(true);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { duration: 0.6, staggerChildren: 0.2 }
+      transition: { duration: 0.6, staggerChildren: 0.2 },
     },
   };
 
@@ -24,7 +24,7 @@ export default function Resume() {
   return (
     <section className="resume-section">
       <div className="resume-background"></div>
-      
+
       <motion.div
         className="resume-container"
         initial="hidden"
@@ -33,9 +33,11 @@ export default function Resume() {
       >
         <motion.div className="resume-header" variants={itemVariants}>
           <div className="icon-wrapper">
-             <FaFilePdf className="pdf-icon" />
+            <FaFilePdf className="pdf-icon" />
           </div>
-          <h1 className="resume-heading">My <span className="highlight">Resume</span></h1>
+          <h1 className="resume-heading">
+            My <span className="highlight">Resume</span>
+          </h1>
           <p className="resume-subtitle">
             View my professional journey, skills, and qualifications.
           </p>
@@ -51,7 +53,7 @@ export default function Resume() {
           >
             <FaDownload /> Download PDF
           </motion.a>
-          
+
           <motion.a
             href={resumeUrl}
             target="_blank"
@@ -81,7 +83,6 @@ export default function Resume() {
             />
           </div>
         </motion.div>
-
       </motion.div>
     </section>
   );

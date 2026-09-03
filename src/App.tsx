@@ -1,53 +1,68 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Layout from "./components/Header/Layout";
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import CustomCursor from "./components/ui/CustomCursor";
+import Navbar from "./components/Header/Navbar";
 import Hero from "./components/Hero/Hero";
-import Projects from "./components/Projects/Projects";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import { useState } from "react";
-import Resume from "./components/Resume/Resume";
+import TickerStrip from "./components/ui/TickerStrip";
+import About from "./components/About/About";
 import Experience from "./components/Experience/Experience";
-import ContactMe from "./components/contact/Contact";
-import Particles from "./components/Hero/Particles";
+import Projects from "./components/Projects/Projects";
+import Skills from "./components/Skills/Skills";
+import Education from "./components/Education/Education";
+import Contact from "./components/contact/Contact";
+import Footer from "./components/Footer/Footer";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  useEffect(() => {
+    // Native high-performance scroll with ScrollTrigger refresh
+    ScrollTrigger.refresh();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
-    <BrowserRouter basename={"/md-portfolioo"}>
-      <Particles /> 
-      <Routes>
-        {" "}
-        <Route
-          path="/"
-          element={
-            <Hero
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-            />
-          }
+    <div className="portfolio-app-root">
+      {/* Custom Cursor (desktop only) */}
+      <CustomCursor />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Sections */}
+      <main>
+        <Hero />
+        <TickerStrip theme="subtle" speed={35} />
+        <About />
+        <Experience />
+        <Projects />
+        <TickerStrip
+          theme="subtle"
+          direction="right"
+          speed={40}
+          items={[
+            "SIGNALR TELEMETRY",
+            "ANGULAR 21 SIGNALS",
+            "OFFLINE RESILIENCE",
+            "ENTERPRISE PRODUCTION",
+            "ARABIC RTL SYSTEMS",
+            "RxJS ARCHITECTURE",
+            "TOUCH & KIOSK POS",
+            "9+ CLIENT PLATFORMS",
+          ]}
         />
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <div>
-                <Hero
-                  selectedCategory={selectedCategory}
-                  setSelectedCategory={setSelectedCategory}
-                />
-              </div>
-            }
-          />
-          <Route
-            path="projects"
-            element={<Projects selectedCategory={selectedCategory} />}
-          />
-          <Route path="resume" element={<Resume />} />
-          <Route path="experience" element={<Experience />} />
-          <Route path="contact" element={<ContactMe />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        <Skills />
+        <Education />
+        <Contact />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

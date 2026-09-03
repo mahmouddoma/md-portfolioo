@@ -1,0 +1,273 @@
+/* ==========================================================================
+   EDUCATION SECTION — Minimalist Editorial Rows & Sleek Ribbon
+   ========================================================================== */
+
+.education-editorial-section {
+  position: relative;
+  padding: 7rem 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.education-editorial-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .education-editorial-container {
+    padding: 0 3.5rem;
+  }
+}
+
+/* Header */
+.education-editorial-header {
+  margin-bottom: 4rem;
+}
+
+.education-editorial-title {
+  font-size: clamp(2.25rem, 3.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  line-height: 1.15;
+}
+
+.education-editorial-subheading {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Education Rows Table
+   ========================================================================== */
+
+.education-rows-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-medium);
+  margin-bottom: 4.5rem;
+}
+
+.education-row-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 2.25rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.education-row-item:hover {
+  background-color: var(--bg-surface);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .education-row-item {
+    grid-template-columns: 200px 320px 1fr;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+}
+
+/* ── Column 1: Meta ── */
+.edu-col-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.edu-type-pill {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.edu-duration-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Column 2: Title & Institution ── */
+.edu-col-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.edu-degree-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  transition: color var(--transition-fast);
+}
+
+.education-row-item:hover .edu-degree-title {
+  color: var(--accent);
+}
+
+.edu-institution-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* ── Column 3: Description ── */
+.edu-col-desc {
+  display: flex;
+  align-items: center;
+}
+
+.edu-desc-text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  max-width: 620px;
+}
+
+/* ==========================================================================
+   Minimalist Resume Ribbon
+   ========================================================================== */
+
+.resume-editorial-ribbon {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 2.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  transition: border-color var(--transition-normal);
+}
+
+.resume-editorial-ribbon:hover {
+  border-color: var(--border-light);
+}
+
+.ribbon-left-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.ribbon-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ribbon-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ribbon-heading {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.ribbon-subtext {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.ribbon-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ribbon-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--text-primary);
+  color: var(--bg-primary) !important;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ribbon-btn-primary:hover {
+  background-color: var(--accent);
+}
+
+.ribbon-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ribbon-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ribbon-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.ribbon-btn-ghost:hover {
+  color: var(--text-primary);
+}
