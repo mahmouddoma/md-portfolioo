@@ -35,7 +35,7 @@ export const PROJECTS: readonly Project[] = [
     technologies: ['Angular', 'TypeScript'],
     url: 'https://devora-sa.com',
     evidence: {
-      src: '/images/projects/devora/interface.webp',
+      src: 'images/projects/devora/interface.webp',
       width: 1440,
       height: 580,
       alt: {
@@ -99,7 +99,7 @@ export const PROJECTS: readonly Project[] = [
     featured: true,
     technologies: ['Angular 21', 'TypeScript', 'RxJS', 'Reactive Forms', 'REST APIs'],
     evidence: {
-      src: '/images/projects/customer-survey/interface.webp',
+      src: 'images/projects/customer-survey/interface.webp',
       width: 1440,
       height: 960,
       alt: {
@@ -163,7 +163,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'enterprise',
     featured: false,
     evidence: {
-      src: '/images/projects/traffic/interface.webp',
+      src: 'images/projects/traffic/interface.webp',
       width: 1440,
       height: 960,
       alt: {
@@ -209,7 +209,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'enterprise',
     featured: false,
     evidence: {
-      src: '/images/projects/npark/interface.webp',
+      src: 'images/projects/npark/interface.webp',
       width: 1440,
       height: 719,
       alt: {
@@ -246,7 +246,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'enterprise',
     featured: false,
     evidence: {
-      src: '/images/projects/q-system/interface.webp',
+      src: 'images/projects/q-system/interface.webp',
       width: 1440,
       height: 960,
       alt: {
@@ -283,7 +283,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'enterprise',
     featured: false,
     evidence: {
-      src: '/images/projects/qbooking/interface.webp',
+      src: 'images/projects/qbooking/interface.webp',
       width: 1440,
       height: 240,
       alt: {
@@ -320,7 +320,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'enterprise',
     featured: false,
     evidence: {
-      src: '/images/projects/crm/interface.webp',
+      src: 'images/projects/crm/interface.webp',
       width: 1440,
       height: 600,
       alt: {
@@ -358,7 +358,7 @@ export const PROJECTS: readonly Project[] = [
     technologies: ['Angular 20', 'TypeScript', 'Signals', 'Bootstrap 5'],
     url: 'https://avokatoo.com',
     evidence: {
-      src: '/images/projects/avokatoo/interface.webp',
+      src: 'images/projects/avokatoo/interface.webp',
       width: 1440,
       height: 680,
       alt: {
@@ -394,7 +394,7 @@ export const PROJECTS: readonly Project[] = [
     featured: false,
     url: 'https://karimdawodgroup.com',
     evidence: {
-      src: '/images/projects/karim-dawod/interface.webp',
+      src: 'images/projects/karim-dawod/interface.webp',
       width: 1440,
       height: 900,
       alt: {
@@ -429,7 +429,7 @@ export const PROJECTS: readonly Project[] = [
     kind: 'freelance',
     featured: false,
     evidence: {
-      src: '/images/projects/el-mostafa/interface.webp',
+      src: 'images/projects/el-mostafa/interface.webp',
       width: 1440,
       height: 900,
       alt: {

@@ -44,7 +44,7 @@ describe('Bilingual portfolio', () => {
       expect(root.querySelector('h1')?.textContent).toContain(PORTFOLIO_CONTENT[code].hero[0]);
       expect(root.querySelector('a[href="mailto:devdoma2002@gmail.com"]')).toBeTruthy();
       const resume = root.querySelector<HTMLAnchorElement>('a[download]')!;
-      expect(resume.getAttribute('href')).toBe('/documents/mahmoud-doma-cv.pdf');
+      expect(resume.getAttribute('href')).toBe('documents/mahmoud-doma-cv.pdf');
       expect(resume.textContent?.trim()).toBe(PORTFOLIO_CONTENT[code].resources.resume);
       expect(resume.hreflang).toBe('en');
       expect(root.querySelector('a[href="https://github.com/mahmouddoma"]')).toBeTruthy();
@@ -77,7 +77,7 @@ describe('Bilingual portfolio', () => {
         expect(root.querySelectorAll('.case-sections section')).toHaveLength(3);
         expect(root.querySelector('app-case-study img')?.getAttribute('alt')).toBeTruthy();
         expect(root.querySelector('app-case-study .capture-link')?.getAttribute('href')).toBe(
-          `/images/projects/${project}/interface.webp`,
+          `images/projects/${project}/interface.webp`,
         );
         expect(document.documentElement.lang).toBe(code);
         if (project === 'customer-survey') {
@@ -128,7 +128,7 @@ describe('Bilingual portfolio', () => {
     for (const entry of entries) {
       expect(entry.querySelector('img')?.getAttribute('alt')).toBeTruthy();
       expect(entry.querySelector('.capture-link')?.getAttribute('href')).toMatch(
-        /^\/images\/projects\/.+\/interface\.webp$/,
+        /^images\/projects\/.+\/interface\.webp$/,
       );
     }
     expect(root.querySelector('.scope-diagram')).toBeNull();

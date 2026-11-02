@@ -17,7 +17,7 @@ export const PROFILE: {
   resources: [
     {
       id: 'resume',
-      href: '/documents/mahmoud-doma-cv.pdf',
+      href: 'documents/mahmoud-doma-cv.pdf',
       download: 'Mahmoud-Doma-CV-2026.pdf',
       language: 'en',
       type: 'application/pdf',
