@@ -26,7 +26,7 @@
             <h3 class="project-name">
               <bdi>{{ copy.name }}</bdi>
             </h3>
-            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" />
+            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" [priority]="idx === 0" />
             @if (caseStudyIds.has(project.id)) {
               <a
                 class="button engineering-cta"
@@ -61,7 +61,7 @@
               <div>
                 <dt>{{ content().technology }}</dt>
                 <dd class="tech-tags">
-                  @for (tech of project.technologies; track tech) {
+                  @for (tech of project.technologies.slice(0, 6); track tech) {
                     <bdi class="tech-tag">{{ tech }}</bdi>
                   }
                 </dd>
@@ -86,18 +86,18 @@
       @for (project of moreEnterpriseProjects; track project.id) {
         @let copy = project.copy[locale().code];
         <li class="enterprise-item" appScrollReveal [attr.data-project]="project.id">
-          <div class="item-header">
-            <h3>
-              <bdi>{{ copy.name }}</bdi>
-            </h3>
-            <p class="item-discipline">{{ copy.discipline }} · {{ content().enterprise }}</p>
-          </div>
+          <div class="enterprise-content">
+            <div class="item-header">
+              <h3>
+                <bdi>{{ copy.name }}</bdi>
+              </h3>
+              <p class="item-discipline">{{ copy.discipline }} · {{ content().enterprise }}</p>
+            </div>
 
-          <div class="item-body">
             <p class="item-summary">{{ copy.summary }}</p>
             <p class="item-contribution">{{ copy.contribution }}</p>
             <div class="tech-tags">
-              @for (tech of project.technologies; track tech) {
+              @for (tech of project.technologies.slice(0, 5); track tech) {
                 <bdi class="tech-tag">{{ tech }}</bdi>
               }
             </div>
@@ -108,12 +108,14 @@
             }
           </div>
 
-          <details class="item-details" open>
-            <summary>
-              {{ content().viewCapture }}<span class="sr-only"> — {{ copy.name }}</span>
-            </summary>
-            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" sizes="92vw" />
-          </details>
+          <div class="enterprise-visual">
+            <details class="item-details" open>
+              <summary>
+                {{ content().viewCapture }}<span class="sr-only"> — {{ copy.name }}</span>
+              </summary>
+              <app-project-evidence [evidence]="project.evidence" [locale]="locale()" sizes="(max-width: 55rem) 92vw, 42vw" />
+            </details>
+          </div>
         </li>
       }
     </ul>
@@ -141,7 +143,7 @@
             <p class="independent-summary">{{ copy.summary }}</p>
             <p class="index-contribution">{{ copy.contribution }}</p>
             <div class="tech-tags">
-              @for (tech of project.technologies; track tech) {
+              @for (tech of project.technologies.slice(0, 5); track tech) {
                 <bdi class="tech-tag">{{ tech }}</bdi>
               }
             </div>

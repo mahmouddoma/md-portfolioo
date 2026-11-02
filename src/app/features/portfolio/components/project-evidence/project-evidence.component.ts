@@ -24,5 +24,6 @@ export class ProjectEvidenceComponent {
   readonly evidence = input.required<ProjectEvidence>();
   readonly locale = input.required<Locale>();
   readonly sizes = input('(max-width: 45rem) 92vw, 60vw');
+  readonly priority = input<boolean>(false);
   protected readonly content = computed(() => PORTFOLIO_CONTENT[this.locale().code]);
 }

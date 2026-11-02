@@ -125,15 +125,15 @@ export const PORTFOLIO_CONTENT = {
     practice: [
       {
         title: 'Enterprise Angular Architecture',
-        text: 'Reusable component libraries, reactive state management with Signals, RxJS, and NgRx, modular boundaries, and maintainable enterprise workflows.',
+        text: 'Modular Angular architecture, reactive state management with Signals, RxJS, and NgRx, clean component boundaries, and maintainable enterprise workflows.',
       },
       {
         title: 'Real-Time & Offline Systems',
-        text: 'Sub-second telemetry via SignalR and MQTT, interactive geospatial map rendering with Leaflet, and client-side offline routing using Web Workers and IndexedDB.',
+        text: 'Real-time operational updates using SignalR and MQTT, interactive geospatial map rendering with Leaflet, and client-side offline routing using Web Workers and IndexedDB.',
       },
       {
         title: 'RTL, Localization & Accessibility',
-        text: 'Bilingual enterprise interfaces with native Arabic RTL, strict WCAG accessibility compliance, role-aware UX patterns, and responsive behavior across viewports.',
+        text: 'Bilingual enterprise interfaces with native Arabic RTL, accessible interface patterns, semantic HTML, keyboard-friendly interactions, and responsive behavior across viewports.',
       },
     ],
     aboutLink: 'More about my approach',
@@ -283,7 +283,7 @@ export const PORTFOLIO_CONTENT = {
     practice: [
       {
         title: 'معمارية Angular المؤسسية',
-        text: 'مكتبات مكونات قابلة لإعادة الاستخدام، وإدارة الحالة التفاعلية بـ Signals وRxJS وNgRx، ومسارات عمل مؤسسية واضحة وقابلة للصيانة.',
+        text: 'بنية Angular معيارية ومنظمة، وإدارة الحالة التفاعلية بـ Signals وRxJS وNgRx، ومسارات عمل مؤسسية واضحة وقابلة للصيانة.',
       },
       {
         title: 'أنظمة البيانات اللحظية والعمل دون اتصال',
@@ -291,7 +291,7 @@ export const PORTFOLIO_CONTENT = {
       },
       {
         title: 'دعم العربية والاتجاه RTL وإمكانية الوصول',
-        text: 'واجهات مؤسسية ثنائية اللغة تدعم الاتجاه العربي RTL أصالةً، مع التزام بمعايير النفاذية WCAG، وتجارب استخدام تراعي الصلاحيات وتتجاوب بسلاسة.',
+        text: 'واجهات مؤسسية ثنائية اللغة تدعم الاتجاه العربي RTL أصالةً، بأنماط واجهات تراعي إمكانية الوصول وHTML دلالي، وتجارب استخدام تراعي الصلاحيات وتتجاوب بسلاسة.',
       },
     ],
     aboutLink: 'أكثر عن طريقتي في العمل',

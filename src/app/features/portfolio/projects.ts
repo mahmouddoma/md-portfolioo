@@ -37,27 +37,27 @@ export const PROJECTS: readonly Project[] = [
     evidence: {
       src: 'images/projects/traffic/interface.webp',
       width: 1440,
-      height: 960,
+      height: 900,
       alt: {
-        en: 'Traffic Control application sign-in interface with traffic signal identity and empty account fields.',
-        ar: 'واجهة الدخول لتطبيق التحكم المروري، بهوية إشارة المرور وحقول حساب فارغة.',
+        en: 'Interactive traffic management map interface with geospatial road routing and signal cabinet marker controls.',
+        ar: 'واجهة الخريطة التفاعلية لإدارة المرور مع أدوات توجيه المسارات وإدارة كبائن الإشارات.',
       },
       caption: {
-        en: 'Application capture · Traffic Control sign-in screen. NileTronix enterprise project.',
-        ar: 'لقطة من التطبيق · شاشة الدخول للتحكم المروري. مشروع مؤسسي ضمن NileTronix.',
+        en: 'Application capture · Interactive traffic map and marker routing interface. NileTronix enterprise project.',
+        ar: 'لقطة من التطبيق · واجهة الخريطة التفاعلية وتوجيه مسارات الكبائن. مشروع مؤسسي ضمن NileTronix.',
       },
     },
     technologies: [
       'Angular',
       'TypeScript',
       'RxJS',
-      'NgRx',
       'SignalR',
-      'MQTT',
       'Leaflet',
+      'Web Workers',
+      'NgRx',
+      'MQTT',
       'GeoJSON',
       'IndexedDB',
-      'Web Workers',
     ],
     copy: {
       en: {
@@ -78,7 +78,7 @@ export const PROJECTS: readonly Project[] = [
           },
           {
             title: 'The engineering challenge',
-            text: 'Control room operators require sub-second awareness of signal state changes across multiple intersections while running on restricted local networks. The interface needed to ingest high-frequency telemetry without degrading UI responsiveness or leaking memory over extended shifts.',
+            text: 'Control room operators require real-time operational awareness of signal state changes across multiple intersections while running on restricted local networks. The interface needed to ingest high-frequency operational updates without degrading UI responsiveness or leaking memory over extended shifts.',
           },
           {
             title: 'My responsibilities',
@@ -90,7 +90,7 @@ export const PROJECTS: readonly Project[] = [
           },
           {
             title: 'Verified outcomes & architectural lessons',
-            text: 'Achieved uninterrupted operational awareness even during network disconnects. Decoupling computational routing into Web Workers ensured 60fps map interactions during live data bursts.',
+            text: 'Achieved uninterrupted operational awareness even during network disconnects. Decoupling computational routing into Web Workers ensured smooth, responsive map interactions during live data bursts.',
           },
         ],
       },
@@ -124,7 +124,7 @@ export const PROJECTS: readonly Project[] = [
           },
           {
             title: 'النتائج والدروس المعمارية',
-            text: 'استقرار تام لعمليات المتابعة حتى عند انقطاع الاتصال الخارجي، مع الحفاظ على استجابة الخرائط وسلاستها الكاملة بمعدل 60 إطارًا في الثانية أثناء تدفقات البيانات المكثفة.',
+            text: 'استقرار تام لعمليات المتابعة حتى عند انقطاع الاتصال الخارجي، مع الحفاظ على استجابة الخرائط وسلاستها الكاملة أثناء تدفقات البيانات المكثفة.',
           },
         ],
       },
@@ -220,7 +220,7 @@ export const PROJECTS: readonly Project[] = [
         ar: 'شاشة إعدادات فعلية · مستخرجة من دليل استخدام NPark، صفحة ١٢. مشروع ضمن NileTronix.',
       },
     },
-    technologies: ['Angular 20', 'Signals', 'RxJS', 'NgRx', 'PrimeNG', 'Chart.js', 'REST APIs'],
+    technologies: ['Angular 20', 'Signals', 'RxJS', 'PrimeNG', 'Chart.js', 'REST APIs', 'NgRx'],
     copy: {
       en: {
         name: 'NPark — Smart Parking Dashboard',
@@ -232,7 +232,7 @@ export const PROJECTS: readonly Project[] = [
         context:
           'Commercial parking facilities requiring real-time gate supervision, occupancy tracking, rate calculations, and cashier workflows.',
         challenges:
-          'Building reactive, role-based dashboards that dynamically reflect parking lot states and gate movements with zero interface delay.',
+          'Building reactive, role-based dashboards that dynamically reflect parking lot states and gate movements with immediate visual feedback.',
       },
       ar: {
         name: 'NPark — لوحة إدارة المواقف الذكية',
@@ -244,7 +244,7 @@ export const PROJECTS: readonly Project[] = [
         context:
           'منشآت مواقف تجارية تتطلب إشرافًا مباشرًا على البوابات، وحساب معدلات الإشغال، وإدارة الرسوم وكاشير التذاكر.',
         challenges:
-          'بناء لوحات معلومات تفاعلية تعتمد الصلاحيات وتعكس حركة البوابات وإشغال المواقف فورًا دون تأخير.',
+          'بناء لوحات معلومات تفاعلية تعتمد الصلاحيات وتعكس حركة البوابات وإشغال المواقف فورًا باستجابة بصرية مباشرة.',
       },
     },
   },
@@ -270,8 +270,8 @@ export const PROJECTS: readonly Project[] = [
       'TypeScript',
       'Signals',
       'RxJS',
-      'REST APIs',
       'Thermal/POS Printing',
+      'REST APIs',
       'SCSS',
     ],
     copy: {

@@ -104,22 +104,32 @@
   padding: 0;
   margin: 0;
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .enterprise-item {
   display: grid;
-  grid-template-columns: 1.1fr 1.5fr;
-  gap: var(--space-5) var(--space-6);
-  align-items: start;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
   border-block-start: 1px solid var(--line);
-  padding: var(--space-5) var(--space-4);
+  padding: var(--space-6) var(--space-4);
   margin-inline: calc(-1 * var(--space-4));
   border-radius: var(--radius);
   transition: background-color var(--duration) var(--ease-snappy);
   &:hover {
     background: rgba(227, 235, 238, 0.45);
   }
+}
+
+.enterprise-content {
+  display: grid;
+  gap: var(--space-3);
+  max-inline-size: 52ch;
+}
+
+.enterprise-visual {
+  min-inline-size: 0;
 }
 
 .item-header h3 {
@@ -136,12 +146,6 @@
   font-weight: 550;
 }
 
-.item-body {
-  display: grid;
-  gap: var(--space-3);
-  max-inline-size: 52ch;
-}
-
 .item-summary,
 .independent-summary {
   font-size: 0.9375rem;
@@ -155,8 +159,6 @@
 }
 
 .item-details {
-  grid-column: 1 / -1;
-  margin-block-start: var(--space-3);
   summary {
     cursor: pointer;
     color: var(--accent);
@@ -167,23 +169,6 @@
     transition:
       color var(--duration) ease,
       transform var(--duration) var(--ease-snappy);
-    &:hover {
-      color: var(--ink);
-      transform: translateX(3px);
-    }
-  }
-  app-project-evidence {
-    margin-block-start: var(--space-3);
-  }
-  margin-block-start: var(--space-3);
-  summary {
-    cursor: pointer;
-    color: var(--accent);
-    min-block-size: 2.5rem;
-    padding-block: var(--space-2);
-    font-weight: 550;
-    font-size: 0.875rem;
-    transition: color var(--duration) ease, transform var(--duration) var(--ease-snappy);
     &:hover {
       color: var(--ink);
       transform: translateX(3px);
@@ -249,6 +234,8 @@
   .enterprise-item {
     grid-template-columns: 1fr;
     gap: var(--space-4);
+    padding: var(--space-5) 0;
+    margin-inline: 0;
   }
 }
 

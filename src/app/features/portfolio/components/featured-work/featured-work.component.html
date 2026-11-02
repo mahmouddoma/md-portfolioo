@@ -1,4 +1,4 @@
-@for (project of projects; track project.id) {
+@for (project of projects; track project.id; let idx = $index) {
   @let copy = project.copy[locale().code];
   <article
     appScrollReveal
@@ -10,7 +10,7 @@
       <h3 class="project-name">
         <bdi>{{ copy.name }}</bdi>
       </h3>
-      <app-project-evidence [evidence]="project.evidence" [locale]="locale()" />
+      <app-project-evidence [evidence]="project.evidence" [locale]="locale()" [priority]="idx === 0" />
       <a class="text-link" [routerLink]="['/', locale().code, 'work', project.id]"
         >{{ content().readCase }}<span class="sr-only"> — {{ copy.name }}</span></a
       >
@@ -31,7 +31,7 @@
         <div>
           <dt>{{ content().technology }}</dt>
           <dd class="tech-tags">
-            @for (tech of project.technologies; track tech) {
+            @for (tech of project.technologies.slice(0, 5); track tech) {
               <bdi class="tech-tag">{{ tech }}</bdi>
             }
           </dd>
