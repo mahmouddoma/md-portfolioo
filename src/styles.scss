@@ -30,6 +30,7 @@
   --ease-craft: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
   --duration: 200ms;
+  --reveal-x: -36px;
   font-family: var(--body-font);
   font-size: 17px;
   line-height: 1.7;
@@ -45,6 +46,7 @@
   --display-tracking: 0;
   --type-hero: clamp(2.25rem, 4.6vw, 4.5rem);
   --type-heading: clamp(1.75rem, 2.5vw, 2.5rem);
+  --reveal-x: 36px;
   font-size: 16px;
   line-height: 1.9;
   font-style: normal;
@@ -336,7 +338,7 @@ button {
 
 .reveal-item {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateX(var(--reveal-x));
   transition:
     opacity 0.75s var(--ease-craft),
     transform 0.75s var(--ease-craft);
@@ -344,16 +346,27 @@ button {
   will-change: transform, opacity;
 }
 
-:root:lang(ar) .reveal-item {
-  transform: translateX(40px);
-}
-
-.reveal-item.is-revealed {
+.reveal-item.is-revealed,
+:root:lang(ar) .reveal-item.is-revealed {
   opacity: 1;
-  transform: translateX(0);
+  transform: none;
 }
 
 @media (max-width: 45rem) {
+  :root {
+    --reveal-x: 0px;
+  }
+  :root:lang(ar) {
+    --reveal-x: 0px;
+  }
+  .reveal-item,
+  :root:lang(ar) .reveal-item {
+    transform: translateY(16px);
+  }
+  .reveal-item.is-revealed,
+  :root:lang(ar) .reveal-item.is-revealed {
+    transform: none;
+  }
   .section-heading {
     align-items: start;
     flex-direction: column;
