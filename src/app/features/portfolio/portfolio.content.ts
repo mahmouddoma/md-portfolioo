@@ -26,6 +26,12 @@ export interface PortfolioContent {
   readonly explore: string;
   readonly selected: string;
   readonly selectedIntro: string;
+  readonly selectedEngineeringTitle: string;
+  readonly selectedEngineeringIntro: string;
+  readonly moreEnterpriseTitle: string;
+  readonly moreEnterpriseIntro: string;
+  readonly contextLabel: string;
+  readonly challengesLabel: string;
   readonly allWork: string;
   readonly readCase: string;
   readonly visit: string;
@@ -93,12 +99,20 @@ export const PORTFOLIO_CONTENT = {
     language: 'Read in Arabic',
     hero: ['Considered interfaces.', 'Complex systems.'],
     intro:
-      'I’m Mahmoud, a frontend engineer with 2+ years of professional experience building Angular applications, from expressive websites to real-time enterprise systems. Considered from both sides of the screen.',
+      'I’m Mahmoud, an Angular Frontend Engineer with 2+ years of professional experience building enterprise web applications, real-time monitoring systems, and complex business workflows. Focused on responsive, accessible interfaces built with architectural precision.',
     explore: 'Explore my work',
-    selected: 'Two sides of my practice.',
-    selectedIntro: 'Interface craft and engineering depth, through two different kinds of work.',
+    selected: 'Featured engineering & craft.',
+    selectedIntro: 'Engineering depth and interface craft through two representative systems.',
+    selectedEngineeringTitle: 'Selected Engineering Work',
+    selectedEngineeringIntro:
+      'Core Angular systems built for real-time operations, mission-critical monitoring, and high-throughput enterprise workflows.',
+    moreEnterpriseTitle: 'More Enterprise Systems',
+    moreEnterpriseIntro:
+      'Operational dashboards, appointment scheduling wizards, and survey platforms developed at NileTronix.',
+    contextLabel: 'System context',
+    challengesLabel: 'Key engineering challenges',
     allWork: 'View all work',
-    readCase: 'Read the project',
+    readCase: 'Read case study',
     visit: 'Visit website',
     freelance: 'Freelance',
     enterprise: 'NileTronix · Enterprise',
@@ -107,38 +121,38 @@ export const PORTFOLIO_CONTENT = {
     technology: 'Built with',
     practiceTitle: 'The interface is only part of the work.',
     practiceText:
-      'A useful frontend also has to handle the work behind it: changing data, different roles, unreliable connections, and two reading directions.',
+      'A resilient frontend must master the operational demands beneath the surface: live streaming events, role-gated access, offline continuity, and bilingual parity.',
     practice: [
       {
-        title: 'Interfaces with character',
-        text: 'Custom visual systems and responsive Angular implementation, brought together in projects such as DEVORA.',
+        title: 'Enterprise Angular Architecture',
+        text: 'Reusable component libraries, reactive state management with Signals, RxJS, and NgRx, modular boundaries, and maintainable enterprise workflows.',
       },
       {
-        title: 'Systems that stay connected',
-        text: 'Real-time monitoring with SignalR and MQTT, with offline mapping work using IndexedDB and Web Workers.',
+        title: 'Real-Time & Offline Systems',
+        text: 'Sub-second telemetry via SignalR and MQTT, interactive geospatial map rendering with Leaflet, and client-side offline routing using Web Workers and IndexedDB.',
       },
       {
-        title: 'Arabic, from the start',
-        text: 'Bilingual flows, RTL layouts and role-aware enterprise interfaces treated as part of the product.',
+        title: 'RTL, Localization & Accessibility',
+        text: 'Bilingual enterprise interfaces with native Arabic RTL, strict WCAG accessibility compliance, role-aware UX patterns, and responsive behavior across viewports.',
       },
     ],
     aboutLink: 'More about my approach',
     workTitle: 'A closer look at the work.',
     workIntro:
-      'A selection of freelance products and enterprise applications. Different contexts; the same attention to how an interface works.',
+      'Enterprise Angular applications and selected independent projects. Different operating contexts, shared technical rigor and interface craft.',
     supporting: 'Enterprise systems',
     supportingIntro:
-      'Operational products developed at NileTronix, shown through actual local application captures and the NPark user manual. Captions identify sign-in, sample-data and offline states.',
-    independentTitle: 'Independent projects, in view.',
+      'Operational products developed at NileTronix, shown through authentic local application captures and user manual documentation.',
+    independentTitle: 'Independent & Freelance Work',
     independentIntro:
-      'Real captures from the public websites, paired with the contribution behind each one.',
+      'Selected client collaborations, studio websites, and product implementations demonstrating interface craft and frontend execution.',
     openCapture: 'Open full-size capture',
-    viewCapture: 'View the interface',
+    viewCapture: 'View interface capture',
     aboutTitle: 'Thoughtful on the surface. Thorough underneath.',
     aboutIntro: [
-      'I’m Mahmoud Doma, a Mid-Level Frontend Engineer based in Cairo. I build Angular interfaces for business systems and freelance products, with more than two years of professional experience.',
-      'I enjoy the point where interface decisions meet engineering decisions: how a booking flow reads, how live information updates, or how the same experience feels natural in Arabic and English.',
-      'My work spans custom websites, role-aware enterprise dashboards, real-time integrations and offline capabilities. I bring that range to both product teams and freelance collaborations.',
+      'I’m Mahmoud Doma, a Mid-Level Frontend Engineer based in Cairo with 2+ years of professional experience specializing in Angular enterprise applications.',
+      'I work where user experience connects with complex software architecture: streaming telemetry into reactive stores, coordinating offline graph routing, and ensuring bilingual interfaces feel natural in both Arabic and English.',
+      'My background covers enterprise dashboards, real-time control room monitors, interactive kiosks, and independent client products. I bring architectural discipline and interface care to engineering teams.',
     ],
     experienceTitle: 'Experience',
     experience: [
@@ -147,43 +161,43 @@ export const PORTFOLIO_CONTENT = {
         company: 'NileTronix',
         dates: 'August 2025 — Present',
         description:
-          'Develop and maintain Angular 19–21 applications for traffic, parking, booking, queues and customer feedback. Integrate SignalR/MQTT updates, build offline map and routing workflows, and coordinate API contracts and frontend error handling. Reusable UI patterns support Arabic RTL and i18n.',
+          'Develop and maintain Angular 19–21 enterprise applications for traffic control, parking automation, booking, queue systems, and customer feedback. Integrate SignalR/MQTT live feeds, implement client-side offline routing pipelines, and design reusable component systems supporting native Arabic RTL and i18n.',
       },
       {
         role: 'Freelance Front-End Developer',
         company: 'Independent',
         dates: '2023 — Present',
         description:
-          'Delivered 9+ client-facing Angular and JavaScript applications across legal services, corporate/B2B, ecommerce and software-studio websites. Responsible for responsive implementation and deployment across devices, with freelance work continuing alongside full-time roles.',
+          'Delivered 9+ client-facing Angular and JavaScript applications across legal marketplaces, corporate portals, and software studio websites. Managed responsive design systems and browser performance across viewports.',
       },
       {
         role: 'Software Implementer',
         company: 'Izam, Inc.',
         dates: 'April — October 2024',
         description:
-          'ERP interface customization, functional testing, migration validation, user training and documentation.',
+          'ERP interface customization, functional validation, migration verification, user training, and documentation.',
       },
     ],
-    educationTitle: 'A different starting point',
+    educationTitle: 'Education',
     education:
-      'Bachelor of Arts in French Language & Literature, Zagazig University, 2024. My professional focus today is frontend engineering.',
+      'Bachelor of Arts in French Language & Literature, Zagazig University, 2024. Focused professionally on frontend engineering and web technologies.',
     resources: { resume: 'Download CV (PDF, English)', linkedin: 'LinkedIn', github: 'GitHub' },
-    expertiseTitle: 'What I work with',
+    expertiseTitle: 'Technical Skills & Technologies',
     expertise: [
       {
-        title: 'Angular & application architecture',
-        text: 'Angular 19–21, TypeScript, JavaScript, RxJS, NgRx and Signals. Standalone components, reactive forms, guards, HTTP interceptors, OnPush and lazy loading.',
+        title: 'Angular & Application Architecture',
+        text: 'Angular 19–21, TypeScript, RxJS, NgRx, Signals. Standalone architecture, reactive forms, guards, HTTP interceptors, OnPush change detection, and route lazy loading.',
       },
       {
-        title: 'Live data, maps & offline work',
-        text: 'REST APIs, SignalR and MQTT for operational updates. IndexedDB, Web Workers and offline caching; Leaflet, GeoJSON, geojson-path-finder and Chart.js for maps and visualization.',
+        title: 'Real-Time, Maps & Offline Systems',
+        text: 'SignalR and MQTT live telemetry. Offline persistence with IndexedDB and Web Workers; Leaflet, GeoJSON, geojson-path-finder, and Chart.js for data visualization and maps.',
       },
       {
-        title: 'Interfaces & quality',
-        text: 'PrimeNG, Bootstrap 5, SCSS and responsive HTML/CSS, with Arabic RTL and i18n. Jasmine, Karma, Git and Chrome DevTools support testing and debugging.',
+        title: 'UI Engineering & Quality',
+        text: 'PrimeNG, Bootstrap 5, SCSS, accessible semantic HTML, native Arabic RTL, Vitest, Jasmine, Karma, Git, and Chrome DevTools.',
       },
     ],
-    learningTitle: 'Learning & languages',
+    learningTitle: 'Certifications',
     certifications: [
       'Angular Development Cross-Skilling Nanodegree — MCIT Egypt',
       'JavaScript Certification — SoloLearn',
@@ -193,36 +207,36 @@ export const PORTFOLIO_CONTENT = {
       { name: 'Arabic', level: 'Native' },
       { name: 'English', level: 'Professional working proficiency' },
     ],
-    contactTitle: 'Have something in mind?',
+    contactTitle: 'Have an engineering role or product in mind?',
     contactText:
-      'An Angular role, a product to build, or an interface that needs a considered frontend. I’d be glad to hear about it.',
+      'Looking for an Angular Frontend Engineer for an enterprise team, real-time application, or complex web platform? Let’s talk.',
     emailLabel: 'Email Mahmoud',
     availability: 'Based in Cairo · Open to remote work and relocation',
     footerNote: 'Designed and built with care, in English and Arabic.',
     backToWork: 'Back to work',
     otherCase: 'Explore the other featured project',
     employerNote:
-      'Developed as part of my work at NileTronix. The product belongs to its employer/client context; no public demo or source access is implied.',
+      'Developed as part of my work at NileTronix. The product belongs to its enterprise context; no public demo or confidential source access is implied.',
     notFoundTitle: 'This page isn’t here.',
     notFoundText: 'The address may have changed. Explore the selected work or return home.',
     meta: {
       home: {
-        title: 'Mahmoud Doma — Frontend Engineer & Angular Developer',
+        title: 'Mahmoud Doma — Angular Frontend Engineer',
         description:
-          'Cairo-based frontend engineer working across expressive websites and complex Angular enterprise systems. Explore verified work and get in touch.',
+          'Cairo-based Angular Frontend Engineer with 2+ years of professional experience building enterprise web applications, real-time monitoring systems, and complex business workflows.',
       },
       work: {
-        title: 'Selected work — Mahmoud Doma',
+        title: 'Work & Systems — Mahmoud Doma',
         description:
-          'Design and frontend participation in DEVORA, frontend development on Customer Survey at NileTronix, and more Angular projects.',
+          'Selected enterprise Angular systems, real-time traffic monitoring, parking dashboards, queue orchestration, and independent web applications.',
       },
       about: {
-        title: 'About & experience — Mahmoud Doma',
+        title: 'About & Experience — Mahmoud Doma',
         description:
-          'Meet Mahmoud Doma, a Cairo-based Angular frontend engineer. Experience at NileTronix, freelance product work and ERP implementation.',
+          'Meet Mahmoud Doma, an Angular Frontend Engineer based in Cairo. Experience at NileTronix, independent engineering projects, and technical skills.',
       },
       notFound: {
-        title: 'Page not found — Mahmoud Doma',
+        title: 'Page Not Found — Mahmoud Doma',
         description:
           'This page could not be found. Return to Mahmoud Doma’s portfolio and selected work.',
       },
@@ -243,10 +257,18 @@ export const PORTFOLIO_CONTENT = {
     language: 'Read in English',
     hero: ['واجهات مدروسة.', 'أنظمة بتفاصيلها.'],
     intro:
-      'أنا محمود، مهندس واجهات أمامية بخبرة مهنية تتجاوز سنتين في تطبيقات Angular، من مواقع لها شخصيتها إلى أنظمة مؤسسية ببيانات لحظية. أهتم بتجربة المستخدم وما وراءها بنفس القدر.',
+      'أنا محمود، مهندس واجهات أمامية متخصص في Angular بخبرة مهنية تتجاوز سنتين في تطوير تطبيقات الويب المؤسسية، وأنظمة المتابعة اللحظية، ومسارات الأعمال المعقدة. أركز على بناء واجهات متجاوبة وسهلة الوصول بهندسة معمارية دقيقة.',
     explore: 'استكشف أعمالي',
-    selected: 'جانبان لنفس الاهتمام.',
-    selectedIntro: 'حرفة الواجهة وعمق التنفيذ، من خلال تجربتين مختلفتين.',
+    selected: 'أعمال هندسية مميزة وحرفة واجهات.',
+    selectedIntro: 'عمق هندسي ودقة في بناء الواجهات عبر نظامين يمثلان جانبين من خبرتي.',
+    selectedEngineeringTitle: 'أعمال هندسية مختارة',
+    selectedEngineeringIntro:
+      'أنظمة Angular رئيسية طُوّرت للعمليات اللحظية، والمتابعة في البيئات الحرجة، ومسارات العمل المؤسسية عالية الكثافة.',
+    moreEnterpriseTitle: 'مزيد من الأنظمة المؤسسية',
+    moreEnterpriseIntro:
+      'معاينات للوحات تحكم تشغيلية تراعي الصلاحيات، ومسارات حجز وجدولة، ومنصات استبيانات طُوّرت ضمن NileTronix.',
+    contextLabel: 'سياق النظام',
+    challengesLabel: 'التحديات الهندسية',
     allWork: 'كل الأعمال',
     readCase: 'اقرأ عن المشروع',
     visit: 'زيارة الموقع',
@@ -257,37 +279,38 @@ export const PORTFOLIO_CONTENT = {
     technology: 'التقنيات',
     practiceTitle: 'الواجهة جزء من الحكاية.',
     practiceText:
-      'وراء الواجهة المفيدة تفاصيل تستحق نفس الاهتمام: بيانات تتغيّر، وصلاحيات مختلفة، واتصال غير مستقر، وتجربة تعمل في اتجاهَي القراءة.',
+      'وراء الواجهة الفعالة متطلبات تشغيلية حقيقية: تدفقات بيانات حية، وصلاحيات مختلفة، واستمرارية العمل دون اتصال، وتكافؤ كامل في اتجاهَي القراءة.',
     practice: [
       {
-        title: 'واجهات لها شخصيتها',
-        text: 'أنظمة بصرية مخصصة وتنفيذ متجاوب بـ Angular، يجتمعان في أعمال مثل DEVORA.',
+        title: 'معمارية Angular المؤسسية',
+        text: 'مكتبات مكونات قابلة لإعادة الاستخدام، وإدارة الحالة التفاعلية بـ Signals وRxJS وNgRx، ومسارات عمل مؤسسية واضحة وقابلة للصيانة.',
       },
       {
-        title: 'أنظمة متصلة بالواقع',
-        text: 'متابعة لحظية باستخدام SignalR وMQTT، والعمل على خرائط دون اتصال باستخدام IndexedDB وWeb Workers.',
+        title: 'أنظمة البيانات اللحظية والعمل دون اتصال',
+        text: 'استقبال البيانات التشغيلية اللحظية عبر SignalR وMQTT، وعرض الخرائط الجغرافية التفاعلية بـ Leaflet، وحساب المسارات دون اتصال بالاعتماد على Web Workers وIndexedDB.',
       },
       {
-        title: 'العربية من البداية',
-        text: 'مسارات ثنائية اللغة، وتخطيطات RTL، وواجهات تراعي الأدوار والصلاحيات كجزء أصيل من المنتج.',
+        title: 'دعم العربية والاتجاه RTL وإمكانية الوصول',
+        text: 'واجهات مؤسسية ثنائية اللغة تدعم الاتجاه العربي RTL أصالةً، مع التزام بمعايير النفاذية WCAG، وتجارب استخدام تراعي الصلاحيات وتتجاوب بسلاسة.',
       },
     ],
     aboutLink: 'أكثر عن طريقتي في العمل',
     workTitle: 'نظرة أقرب على الشغل.',
     workIntro:
-      'اختيارات من منتجات مستقلة وتطبيقات مؤسسية. سياقات مختلفة، واهتمام واحد بطريقة عمل الواجهة.',
+      'تطبيقات Angular مؤسسية ومشاريع مستقلة مختارة. سياقات تشغيلية متنوعة، وانضباط تقني وحرفة واحدة في بناء الواجهات.',
     supporting: 'أنظمة مؤسسية',
     supportingIntro:
-      'منتجات تشغيلية عملت عليها ضمن NileTronix، بلقطات فعلية من التطبيقات المحلية ودليل NPark. يوضح وصف كل صورة إن كانت شاشة دخول أو بيانات عرض نموذجية أو حالة دون اتصال بالخادم.',
-    independentTitle: 'المشاريع المستقلة، عن قرب.',
-    independentIntro: 'لقطات حقيقية من المواقع العامة، مع توضيح مساهمتي في كل مشروع.',
+      'منتجات تشغيلية عملت عليها ضمن NileTronix، بلقطات فعلية من التطبيقات المحلية ودليل NPark. يوضح وصف كل صورة حالتها الواقعية.',
+    independentTitle: 'الأعمال المستقلة والتعاقدية',
+    independentIntro:
+      'مشاريع مع عملاء واستوديوهات برمجية تبرز حرفة التصميم ودقة التنفيذ التقني للواجهات الأمامية.',
     openCapture: 'افتح اللقطة بالحجم الكامل',
-    viewCapture: 'شاهد الواجهة',
+    viewCapture: 'شاهد لقطة الواجهة',
     aboutTitle: 'اهتمام بما تراه. ودقّة فيما وراءه.',
     aboutIntro: [
-      'أنا محمود دومة، مهندس واجهات أمامية بمستوى متوسط مقيم في القاهرة، ولديّ أكثر من سنتين من الخبرة المهنية. أبني واجهات Angular لأنظمة الأعمال والمنتجات المستقلة.',
-      'أستمتع بالمساحة التي يلتقي فيها قرار التصميم بقرار التنفيذ: كيف يفهم المستخدم خطوات الحجز، وكيف تتحدّث البيانات لحظيًا، وكيف تبدو التجربة طبيعية بالعربية والإنجليزية.',
-      'يمتد عملي من المواقع المخصصة إلى لوحات التحكم والصلاحيات والتكاملات اللحظية وإمكانات العمل دون اتصال. وأقدّم هذه الخبرة ضمن فرق المنتجات وفي التعاون المستقل.',
+      'أنا محمود دومة، مهندس واجهات أمامية متخصص في Angular بمستوى متوسط مقيم في القاهرة، ولديّ أكثر من سنتين من الخبرة المهنية في الأنظمة المؤسسية.',
+      'أعمل في المساحة التي تلتقي فيها تجربة المستخدم بالبنية البرمجية المتطورة: استقبال البيانات الحية في مخازن تفاعلية، وحساب المسارات المكانية دون اتصال، وضمان طبيعية التجربة بالعربية والإنجليزية.',
+      'تشمل خبرتي لوحات التحكم المؤسسية، وأنظمة مراقبة غرف العمليات اللحظية، والأكشاك التفاعلية، ومشاريع العملاء المستقلة. أقدّم هذا الانضباط المعماري لفرق الهندسة والمنتج.',
     ],
     experienceTitle: 'الخبرة المهنية',
     experience: [
@@ -296,14 +319,14 @@ export const PORTFOLIO_CONTENT = {
         company: 'NileTronix',
         dates: 'أغسطس ٢٠٢٥ — حتى الآن',
         description:
-          'تطوير وصيانة تطبيقات Angular 19–21 للمرور والمواقف والحجز والطوابير وتقييم العملاء. تكاملات SignalR وMQTT، ومسارات خرائط تعمل دون اتصال، وتنسيق عقود API ومعالجة أخطاء الواجهة، مع مكونات قابلة لإعادة الاستخدام تدعم العربية وتعدد اللغات.',
+          'تطوير وصيانة تطبيقات Angular 19–21 المؤسسية لأنظمة المرور والمواقف والحجز والطوابير وتقييم العملاء. تكاملات SignalR وMQTT، ومسارات خرائط تعمل دون اتصال، ومكونات قابلة لإعادة الاستخدام تدعم العربية وتعدد اللغات.',
       },
       {
         role: 'مطوّر واجهات أمامية مستقل',
         company: 'عمل مستقل',
         dates: '٢٠٢٣ — حتى الآن',
         description:
-          'نفّذت ٩ تطبيقات أو أكثر للعملاء باستخدام Angular وJavaScript، في الخدمات القانونية ومواقع الشركات والتجارة الإلكترونية واستوديوهات البرمجيات. تولّيت التنفيذ المتجاوب والنشر عبر الأجهزة، مع استمرار العمل المستقل بجانب الوظائف بدوام كامل.',
+          'نفّذت ٩ تطبيقات أو أكثر للعملاء باستخدام Angular وJavaScript، في الخدمات القانونية وبوابات الشركات واستوديوهات البرمجيات. تولّيت أنظمة التصميم المتجاوبة وأداء المتصفح عبر مختلف الشاشات.',
       },
       {
         role: 'أخصائي تنفيذ أنظمة',
@@ -313,30 +336,30 @@ export const PORTFOLIO_CONTENT = {
           'تخصيص واجهات ERP، والاختبارات الوظيفية، والتحقق من ترحيل البيانات، وتدريب المستخدمين وإعداد التوثيق.',
       },
     ],
-    educationTitle: 'بداية من مجال مختلف',
+    educationTitle: 'التعليم',
     education:
-      'ليسانس آداب في اللغة الفرنسية وآدابها، جامعة الزقازيق، ٢٠٢٤. تركيزي المهني اليوم هو هندسة الواجهات الأمامية.',
+      'ليسانس آداب في اللغة الفرنسية وآدابها، جامعة الزقازيق، ٢٠٢٤. تركيزي المهني الأساسي هو هندسة الواجهات الأمامية وتقنيات الويب الحديثة.',
     resources: {
       resume: 'تحميل السيرة الذاتية (PDF، بالإنجليزية)',
       linkedin: 'LinkedIn',
       github: 'GitHub',
     },
-    expertiseTitle: 'التقنيات في شغلي',
+    expertiseTitle: 'المهارات والتقنيات',
     expertise: [
       {
         title: 'Angular ومعمارية التطبيقات',
-        text: 'Angular 19–21 وTypeScript وJavaScript وRxJS وNgRx وSignals. مكونات مستقلة، ونماذج تفاعلية، وحماية المسارات، واعتراض طلبات HTTP، وOnPush والتحميل عند الحاجة.',
+        text: 'Angular 19–21 وTypeScript وRxJS وNgRx وSignals. مكونات مستقلة، ونماذج تفاعلية، وحماية المسارات، واعتراض طلبات HTTP، وOnPush والتحميل التدريجي للمسارات.',
       },
       {
-        title: 'بيانات لحظية وخرائط دون اتصال',
-        text: 'REST APIs وSignalR وMQTT للتحديثات التشغيلية. IndexedDB وWeb Workers والتخزين دون اتصال، مع Leaflet وGeoJSON وgeojson-path-finder وChart.js للخرائط وعرض البيانات.',
+        title: 'البيانات اللحظية والخرائط والعمل دون اتصال',
+        text: 'تحديثات SignalR وMQTT اللحظية. التخزين المحلي بـ IndexedDB وWeb Workers، مع Leaflet وGeoJSON وgeojson-path-finder وChart.js للخرائط والرسوم البيانية.',
       },
       {
-        title: 'الواجهات وجودة التنفيذ',
-        text: 'PrimeNG وBootstrap 5 وSCSS وواجهات HTML/CSS متجاوبة، مع دعم العربية وRTL وتعدد اللغات. وأستخدم Jasmine وKarma وGit وChrome DevTools في الاختبار وتتبع الأخطاء.',
+        title: 'هندسة الواجهات وجودة البرمجيات',
+        text: 'PrimeNG وBootstrap 5 وSCSS وواجهات HTML دلالية متجاوبة، مع دعم العربية والاتجاه RTL. وأستخدم Vitest وJasmine وKarma وGit وChrome DevTools للاختبار وتتبع الأداء.',
       },
     ],
-    learningTitle: 'التعلّم واللغات',
+    learningTitle: 'الشهادات والاعتمادات',
     certifications: [
       'برنامج Angular Development Cross-Skilling Nanodegree — وزارة الاتصالات وتكنولوجيا المعلومات المصرية (MCIT)',
       'شهادة JavaScript — SoloLearn',
@@ -346,9 +369,9 @@ export const PORTFOLIO_CONTENT = {
       { name: 'العربية', level: 'اللغة الأم' },
       { name: 'الإنجليزية', level: 'إجادة مهنية للعمل' },
     ],
-    contactTitle: 'في بالك فكرة؟',
+    contactTitle: 'تبحث عن مهندس Angular لفريقك؟',
     contactText:
-      'فرصة عمل في Angular، أو منتج تريد بناءه، أو واجهة تحتاج تنفيذًا مدروسًا. يسعدني أسمع منك.',
+      'سواء كانت فرصة عمل لمهندس Angular لتطبيقات مؤسسية، أو نظام ببيانات لحظية، أو منصة ويب معقدة: يسعدني التواصل.',
     emailLabel: 'راسل محمود',
     availability: 'مقيم في القاهرة · منفتح على العمل عن بُعد والانتقال',
     footerNote: 'تصميم وتنفيذ باهتمام، بالعربية والإنجليزية.',
@@ -360,19 +383,19 @@ export const PORTFOLIO_CONTENT = {
     notFoundText: 'قد يكون العنوان تغيّر. استكشف الأعمال أو ارجع إلى الصفحة الرئيسية.',
     meta: {
       home: {
-        title: 'محمود دومة — مهندس واجهات أمامية ومطوّر Angular',
+        title: 'محمود دومة — مهندس واجهات أمامية · Angular',
         description:
-          'مهندس واجهات أمامية من القاهرة، أعمل على مواقع مميزة وأنظمة Angular مؤسسية. تعرّف على أعمالي وتواصل معي.',
+          'مهندس واجهات أمامية متخصص في Angular من القاهرة، بخبرة تتجاوز سنتين في تطوير تطبيقات الويب المؤسسية وأنظمة المتابعة اللحظية ومسارات العمل المعقدة.',
       },
       work: {
-        title: 'الأعمال — محمود دومة',
+        title: 'الأعمال والأنظمة — محمود دومة',
         description:
-          'مشاركتي في تصميم وتنفيذ DEVORA، وتطوير واجهات منصة تقييم العملاء ضمن NileTronix، واختيارات من أعمال Angular أخرى.',
+          'معمارية Angular المؤسسية، ومتابعة المرور اللحظية، ولوحات المواقف وإدارة الطوابير، وتطبيقات ويب مستقلة.',
       },
       about: {
         title: 'عنّي والخبرة المهنية — محمود دومة',
         description:
-          'تعرّف على محمود دومة، مهندس واجهات Angular من القاهرة. خبرتي في NileTronix والعمل المستقل وتنفيذ أنظمة ERP.',
+          'تعرّف على محمود دومة، مهندس واجهات Angular من القاهرة. خبرتي في NileTronix والعمل المستقل والمهارات التقنية.',
       },
       notFound: {
         title: 'الصفحة غير موجودة — محمود دومة',

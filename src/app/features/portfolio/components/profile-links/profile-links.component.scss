@@ -27,7 +27,10 @@ li {
   text-decoration: underline;
   text-underline-offset: 0.35em;
   text-decoration-color: var(--line);
-  transition: color var(--duration) ease, text-decoration-color var(--duration) ease, transform var(--duration) var(--ease-snappy);
+  transition:
+    color var(--duration) ease,
+    text-decoration-color var(--duration) ease,
+    transform var(--duration) var(--ease-snappy);
   &:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);

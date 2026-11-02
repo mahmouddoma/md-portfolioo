@@ -73,7 +73,9 @@ h1 span + span {
   margin-inline: calc(-1 * var(--space-4));
   border-block-end: 1px solid var(--line);
   border-radius: var(--radius);
-  transition: background-color var(--duration) var(--ease-snappy), transform var(--duration) var(--ease-snappy);
+  transition:
+    background-color var(--duration) var(--ease-snappy),
+    transform var(--duration) var(--ease-snappy);
 }
 .practice-details article:hover {
   background: rgba(227, 235, 238, 0.45);
@@ -101,7 +103,18 @@ h1 span + span {
   }
 }
 @media (max-width: 45rem) {
+  .hero {
+    padding-block: clamp(2rem, 6vw, 3.5rem) var(--space-6);
+  }
+  .hero-location {
+    margin-block-start: var(--space-5);
+    gap: var(--space-2) var(--space-3);
+  }
+  .location-divider {
+    inline-size: 1rem;
+  }
   .practice {
     grid-template-columns: 1fr;
+    padding-block-start: var(--space-8);
   }
 }

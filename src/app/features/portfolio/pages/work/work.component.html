@@ -3,17 +3,131 @@
     <h1>{{ content().workTitle }}</h1>
     <p>{{ content().workIntro }}</p>
   </header>
-  <section [attr.aria-label]="content().selected">
-    <h2 class="sr-only">{{ content().selected }}</h2>
-    <app-featured-work [locale]="locale()" />
+
+  <!-- Section 01: Selected Engineering Work -->
+  <section class="engineering-section" aria-labelledby="selected-engineering-title">
+    <div class="section-heading">
+      <div>
+        <h2 id="selected-engineering-title">{{ content().selectedEngineeringTitle }}</h2>
+        <p>{{ content().selectedEngineeringIntro }}</p>
+      </div>
+    </div>
+
+    <div class="engineering-spreads">
+      @for (project of selectedProjects; track project.id; let idx = $index) {
+        @let copy = project.copy[locale().code];
+        <article
+          class="engineering-spread"
+          [class.inverted-spread]="idx % 2 === 1"
+          appScrollReveal
+          [attr.data-project]="project.id"
+        >
+          <div class="project-visual">
+            <h3 class="project-name">
+              <bdi>{{ copy.name }}</bdi>
+            </h3>
+            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" />
+            @if (caseStudyIds.has(project.id)) {
+              <a
+                class="button engineering-cta"
+                [routerLink]="['/', locale().code, 'work', project.id]"
+              >
+                {{ content().readCase }}<span class="sr-only"> — {{ copy.name }}</span>
+              </a>
+            }
+          </div>
+
+          <div class="project-description">
+            <p class="project-discipline">{{ copy.discipline }} · {{ content().enterprise }}</p>
+            <p class="project-summary">{{ copy.summary }}</p>
+
+            <dl class="project-facts">
+              @if (copy.context) {
+                <div>
+                  <dt>{{ content().contextLabel }}</dt>
+                  <dd>{{ copy.context }}</dd>
+                </div>
+              }
+              <div>
+                <dt>{{ content().contribution }}</dt>
+                <dd>{{ copy.contribution }}</dd>
+              </div>
+              @if (copy.challenges) {
+                <div>
+                  <dt>{{ content().challengesLabel }}</dt>
+                  <dd>{{ copy.challenges }}</dd>
+                </div>
+              }
+              <div>
+                <dt>{{ content().technology }}</dt>
+                <dd class="tech-tags">
+                  @for (tech of project.technologies; track tech) {
+                    <bdi class="tech-tag">{{ tech }}</bdi>
+                  }
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      }
+    </div>
   </section>
-  <section class="supporting-work" aria-labelledby="independent-title">
+
+  <!-- Section 02: More Enterprise Systems -->
+  <section class="more-enterprise-section" aria-labelledby="more-enterprise-title">
+    <div class="section-heading">
+      <div>
+        <h2 id="more-enterprise-title">{{ content().moreEnterpriseTitle }}</h2>
+        <p>{{ content().moreEnterpriseIntro }}</p>
+      </div>
+    </div>
+
+    <ul class="enterprise-compact-list">
+      @for (project of moreEnterpriseProjects; track project.id) {
+        @let copy = project.copy[locale().code];
+        <li class="enterprise-item" appScrollReveal [attr.data-project]="project.id">
+          <div class="item-header">
+            <h3>
+              <bdi>{{ copy.name }}</bdi>
+            </h3>
+            <p class="item-discipline">{{ copy.discipline }} · {{ content().enterprise }}</p>
+          </div>
+
+          <div class="item-body">
+            <p class="item-summary">{{ copy.summary }}</p>
+            <p class="item-contribution">{{ copy.contribution }}</p>
+            <div class="tech-tags">
+              @for (tech of project.technologies; track tech) {
+                <bdi class="tech-tag">{{ tech }}</bdi>
+              }
+            </div>
+            @if (caseStudyIds.has(project.id)) {
+              <a class="text-link" [routerLink]="['/', locale().code, 'work', project.id]">
+                {{ content().readCase }}<span class="sr-only"> — {{ copy.name }}</span>
+              </a>
+            }
+          </div>
+
+          <details class="item-details" open>
+            <summary>
+              {{ content().viewCapture }}<span class="sr-only"> — {{ copy.name }}</span>
+            </summary>
+            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" sizes="92vw" />
+          </details>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- Section 03: Independent & Freelance Work -->
+  <section class="independent-section" aria-labelledby="independent-title">
     <div class="section-heading">
       <div>
         <h2 id="independent-title">{{ content().independentTitle }}</h2>
         <p>{{ content().independentIntro }}</p>
       </div>
     </div>
+
     <div class="independent-grid">
       @for (project of independentProjects; track project.id) {
         @let copy = project.copy[locale().code];
@@ -23,51 +137,29 @@
             <h3>
               <bdi>{{ copy.name }}</bdi>
             </h3>
-            <p class="index-discipline">{{ copy.discipline }}</p>
-            <p>{{ copy.summary }}</p>
+            <p class="index-discipline">{{ copy.discipline }} · {{ content().freelance }}</p>
+            <p class="independent-summary">{{ copy.summary }}</p>
             <p class="index-contribution">{{ copy.contribution }}</p>
-            @if (project.url) {
-              <a class="text-link" [href]="project.url" rel="external"
-                >{{ content().visit }}<span class="sr-only"> — {{ copy.name }}</span></a
-              >
-            }
+            <div class="tech-tags">
+              @for (tech of project.technologies; track tech) {
+                <bdi class="tech-tag">{{ tech }}</bdi>
+              }
+            </div>
+            <div class="project-actions">
+              @if (caseStudyIds.has(project.id)) {
+                <a class="text-link" [routerLink]="['/', locale().code, 'work', project.id]">
+                  {{ content().readCase }}<span class="sr-only"> — {{ copy.name }}</span>
+                </a>
+              }
+              @if (project.url) {
+                <a class="text-link" [href]="project.url" rel="external">
+                  {{ content().visit }}<span class="sr-only"> — {{ copy.name }}</span>
+                </a>
+              }
+            </div>
           </div>
         </article>
       }
     </div>
-  </section>
-  <section class="supporting-work" aria-labelledby="supporting-title">
-    <div class="section-heading">
-      <div>
-        <h2 id="supporting-title">{{ content().supporting }}</h2>
-        <p>{{ content().supportingIntro }}</p>
-      </div>
-    </div>
-    <ul class="project-index">
-      @for (project of enterpriseProjects; track project.id) {
-        @let copy = project.copy[locale().code];
-        <li appScrollReveal [attr.data-project]="project.id">
-          <div class="index-name">
-            <h3>
-              <bdi>{{ copy.name }}</bdi>
-            </h3>
-            <p>{{ copy.discipline }}</p>
-          </div>
-          <div class="index-description">
-            <p>{{ copy.summary }}</p>
-            <p class="index-contribution">{{ copy.contribution }}</p>
-          </div>
-          <div class="index-context">
-            <span>{{ content()[project.kind] }}</span>
-          </div>
-          <details open>
-            <summary>
-              {{ content().viewCapture }}<span class="sr-only"> — {{ copy.name }}</span>
-            </summary>
-            <app-project-evidence [evidence]="project.evidence" [locale]="locale()" sizes="92vw" />
-          </details>
-        </li>
-      }
-    </ul>
   </section>
 </div>

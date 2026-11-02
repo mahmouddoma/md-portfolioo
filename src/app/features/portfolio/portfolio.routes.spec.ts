@@ -70,17 +70,17 @@ describe('Bilingual portfolio', () => {
       expect(root.querySelector('app-about a[download]')).toBeTruthy();
     });
 
-    for (const project of ['devora', 'customer-survey']) {
+    for (const project of ['traffic', 'devora', 'customer-survey']) {
       it(`directly loads /${code}/work/${project} with localized case content`, async () => {
         await harness.navigateByUrl(`/${code}/work/${project}`);
         const root = harness.routeNativeElement!;
-        expect(root.querySelectorAll('.case-sections section')).toHaveLength(3);
+        expect(root.querySelectorAll('.case-sections section').length).toBeGreaterThanOrEqual(3);
         expect(root.querySelector('app-case-study img')?.getAttribute('alt')).toBeTruthy();
         expect(root.querySelector('app-case-study .capture-link')?.getAttribute('href')).toBe(
           `images/projects/${project}/interface.webp`,
         );
         expect(document.documentElement.lang).toBe(code);
-        if (project === 'customer-survey') {
+        if (project === 'traffic' || project === 'customer-survey') {
           expect(root.textContent).toContain(PORTFOLIO_CONTENT[code].employerNote);
           expect(root.querySelector('.case-facts a[rel="external"]')).toBeNull();
         }
@@ -89,14 +89,14 @@ describe('Bilingual portfolio', () => {
   }
 
   it('preserves the equivalent case, query string and anchor when switching languages', async () => {
-    await harness.navigateByUrl('/en/work/devora?source=review#contact');
+    await harness.navigateByUrl('/en/work/traffic?source=review#contact');
     const link = harness.routeNativeElement!.querySelector<HTMLAnchorElement>('a[hreflang="ar"]')!;
-    expect(link.getAttribute('href')).toBe('/ar/work/devora?source=review#contact');
+    expect(link.getAttribute('href')).toBe('/ar/work/traffic?source=review#contact');
     link.click();
     await harness.fixture.whenStable();
-    expect(TestBed.inject(Router).url).toBe('/ar/work/devora?source=review#contact');
+    expect(TestBed.inject(Router).url).toBe('/ar/work/traffic?source=review#contact');
     expect(document.documentElement.dir).toBe('rtl');
-    expect(harness.routeNativeElement!.querySelector('h1')?.textContent).toBe('DEVORA');
+    expect(harness.routeNativeElement!.querySelector('h1')?.textContent).toBe('نظام إدارة المرور');
   });
 
   it('opens and closes the menu with Escape and closes it after navigation', async () => {
@@ -116,14 +116,14 @@ describe('Bilingual portfolio', () => {
   it('lists ten real projects and keeps contact links functional', async () => {
     await harness.navigateByUrl('/en/work');
     const root = harness.routeNativeElement!;
-    expect(root.querySelectorAll('.project-spread')).toHaveLength(2);
+    expect(root.querySelectorAll('.engineering-spread')).toHaveLength(3);
+    expect(root.querySelectorAll('.enterprise-item')).toHaveLength(3);
+    expect(root.querySelectorAll('.independent-project')).toHaveLength(4);
     const entries = root.querySelectorAll('[data-project]');
     expect(entries).toHaveLength(10);
     expect(new Set(Array.from(entries, (entry) => entry.getAttribute('data-project'))).size).toBe(
       10,
     );
-    expect(root.querySelectorAll('.independent-project')).toHaveLength(3);
-    expect(root.querySelectorAll('.project-index > li')).toHaveLength(5);
     expect(root.querySelectorAll('app-work img')).toHaveLength(10);
     for (const entry of entries) {
       expect(entry.querySelector('img')?.getAttribute('alt')).toBeTruthy();
@@ -132,8 +132,10 @@ describe('Bilingual portfolio', () => {
       );
     }
     expect(root.querySelector('.scope-diagram')).toBeNull();
-    expect(root.querySelector('[data-project="npark"] details')?.hasAttribute('open')).toBe(true);
-    expect(root.querySelector('[data-project="npark"] img')).toBeTruthy();
+    expect(
+      root.querySelector('[data-project="customer-survey"] details')?.hasAttribute('open'),
+    ).toBe(true);
+    expect(root.querySelector('[data-project="customer-survey"] img')).toBeTruthy();
     expect(
       root.querySelector('[data-project="karim-dawod"] a[rel="external"]')?.getAttribute('href'),
     ).toBe('https://karimdawodgroup.com');

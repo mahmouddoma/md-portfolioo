@@ -28,6 +28,14 @@
           <dt>{{ content().scope }}</dt>
           <dd>{{ copy.scope }}</dd>
         </div>
+        <div>
+          <dt>{{ content().technology }}</dt>
+          <dd class="tech-tags">
+            @for (tech of project.technologies; track tech) {
+              <bdi class="tech-tag">{{ tech }}</bdi>
+            }
+          </dd>
+        </div>
       </dl>
     </div>
   </article>

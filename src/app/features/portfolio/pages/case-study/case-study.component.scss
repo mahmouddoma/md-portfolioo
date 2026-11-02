@@ -8,6 +8,7 @@
 .case-intro h1 {
   font-size: var(--type-hero);
   margin-block: var(--space-7) var(--space-5);
+  overflow-wrap: break-word;
 }
 .case-summary {
   max-inline-size: 42ch;
@@ -42,6 +43,7 @@
 }
 .case-facts dd {
   max-inline-size: 30ch;
+  overflow-wrap: break-word;
 }
 .technology {
   display: inline-block;
@@ -78,7 +80,10 @@
   background: var(--ice);
   border: 1px solid rgba(196, 205, 208, 0.6);
   border-radius: var(--radius);
-  transition: transform var(--duration) var(--ease-craft), box-shadow var(--duration) var(--ease-craft), background-color var(--duration) ease;
+  transition:
+    transform var(--duration) var(--ease-craft),
+    box-shadow var(--duration) var(--ease-craft),
+    background-color var(--duration) ease;
 }
 .next-project:hover {
   transform: translateY(-3px);
@@ -107,10 +112,19 @@
   }
 }
 @media (max-width: 45rem) {
+  .case-intro h1 {
+    font-size: clamp(2rem, 7.5vw, 3rem);
+  }
   .case-body {
     grid-template-columns: 1fr;
   }
   .case-facts dl {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+  }
+  .case-facts dd {
+    max-inline-size: 100%;
+  }
+  .next-project {
+    padding: var(--space-5);
   }
 }

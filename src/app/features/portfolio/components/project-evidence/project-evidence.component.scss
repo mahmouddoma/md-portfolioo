@@ -15,7 +15,10 @@ figure {
   border: 1px solid rgba(196, 205, 208, 0.7);
   background: #ffffff;
   box-shadow: 0 4px 16px -2px rgba(35, 52, 60, 0.06);
-  transition: transform 300ms var(--ease-craft), box-shadow 300ms var(--ease-craft), border-color 300ms ease;
+  transition:
+    transform 300ms var(--ease-craft),
+    box-shadow 300ms var(--ease-craft),
+    border-color 300ms ease;
 }
 .capture-link:hover figure {
   transform: translateY(-4px);
@@ -51,7 +54,9 @@ figcaption {
   text-decoration: underline;
   text-underline-offset: 0.25em;
   color: var(--ink);
-  transition: color var(--duration) ease, transform var(--duration) var(--ease-snappy);
+  transition:
+    color var(--duration) ease,
+    transform var(--duration) var(--ease-snappy);
 }
 .capture-link:hover .capture-action {
   color: var(--accent);

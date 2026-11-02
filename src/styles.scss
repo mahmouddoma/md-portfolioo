@@ -124,7 +124,9 @@ button {
   font-weight: 550;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.35em;
-  transition: color var(--duration) ease, transform var(--duration) var(--ease-snappy);
+  transition:
+    color var(--duration) ease,
+    transform var(--duration) var(--ease-snappy);
 }
 .text-link:hover {
   color: var(--accent);
@@ -204,13 +206,15 @@ button {
 .email-link {
   display: inline-block;
   font-family: var(--display-font);
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-size: clamp(1.25rem, 4vw, 2.75rem);
   color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 0.35em;
   text-decoration-color: rgba(142, 192, 216, 0.6);
   letter-spacing: -0.015em;
   overflow-wrap: anywhere;
+  word-break: break-word;
+  max-inline-size: 100%;
   transition: all var(--duration) var(--ease-craft);
   &:hover {
     color: #b5e3f5;
@@ -323,7 +327,9 @@ button {
 .reveal-item {
   opacity: 0;
   transform: translateX(-40px);
-  transition: opacity 0.75s var(--ease-craft), transform 0.75s var(--ease-craft);
+  transition:
+    opacity 0.75s var(--ease-craft),
+    transform 0.75s var(--ease-craft);
   transition-delay: var(--reveal-delay, 0s);
   will-change: transform, opacity;
 }
@@ -355,5 +361,10 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LOCALES } from './core/i18n/locales';
 import { PORTFOLIO_CONTENT } from './features/portfolio/portfolio.content';
-import { FEATURED_PROJECTS } from './features/portfolio/projects';
+import { CASE_STUDY_PROJECTS } from './features/portfolio/projects';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'en' },
@@ -28,7 +28,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/portfolio/pages/work/work.component').then((m) => m.WorkComponent),
       },
-      ...FEATURED_PROJECTS.map((project) => ({
+      ...CASE_STUDY_PROJECTS.map((project) => ({
         path: `work/${project.id}`,
         title: `${project.copy[locale.code].name} — ${PORTFOLIO_CONTENT[locale.code].name}`,
         data: { project, description: project.copy[locale.code].summary },
