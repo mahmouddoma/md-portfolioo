@@ -59,6 +59,23 @@
   h6 {
     font-style: normal;
   }
+
+  .identity-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-style: normal;
+  }
+
+  .identity-role {
+    font-size: 0.775rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .language-link {
+    font-family: var(--body-font);
+  }
 }
 
 *,
@@ -188,116 +205,266 @@ button {
 .page-intro > .button {
   margin-block-start: var(--space-6);
 }
+#main-content,
+#contact {
+  scroll-margin-top: 5rem;
+}
+
+@media (max-width: 45rem) {
+  #main-content,
+  #contact {
+    scroll-margin-top: 4.25rem;
+  }
+}
+
+/* ==========================================================================
+   Editorial Signature — Footer (Closing Statement)
+   ========================================================================== */
+
 .contact-footer {
   background: var(--ink);
   color: var(--paper);
   margin-block-start: var(--space-10);
-  border-block-start: 1px solid rgba(196, 205, 208, 0.2);
-  h2 {
-    max-inline-size: 16ch;
-    font-size: clamp(2.5rem, 5vw, 4.25rem);
-    line-height: 1.1;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-  }
+  border-block-start: 1px solid rgba(196, 205, 208, 0.18);
+  padding-block: clamp(4.5rem, 8vw, 7.5rem) var(--space-6);
 }
-.contact-inner {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: end;
-  padding-block: var(--space-10) var(--space-6);
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
-.contact-description {
-  max-inline-size: 48ch;
-  margin-block: var(--space-4) var(--space-6);
+
+/* --- Section A: Editorial Introduction --- */
+.footer-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-inline-size: 68ch;
+}
+
+.footer-eyebrow-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+:root:lang(ar) .footer-eyebrow-row {
+  letter-spacing: 0;
+}
+
+.footer-eyebrow {
+  font-weight: 700;
   color: var(--footer-muted);
-  font-size: 1.125rem;
-  line-height: 1.75;
 }
-.email-link {
-  display: inline-block;
+
+.footer-availability-dot {
+  color: #72a2b8;
+  font-size: 0.75rem;
+}
+
+.footer-availability {
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+.footer-headline {
   font-family: var(--display-font);
-  font-size: clamp(1.25rem, 4vw, 2.75rem);
+  font-size: clamp(2.25rem, 5.2vw, 4.25rem);
+  line-height: 1.12;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  margin: 0;
+  max-inline-size: 22ch;
+}
+
+:root:lang(ar) .footer-headline {
+  font-family: var(--display-font);
+  line-height: 1.45;
+  letter-spacing: 0;
+  font-style: normal;
+  max-inline-size: 24ch;
+}
+
+.footer-description {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--footer-muted);
+  margin-block-start: var(--space-4);
+  margin-block-end: 0;
+  max-inline-size: 54ch;
+}
+
+/* --- Section B: Primary Contact Action --- */
+.footer-action {
+  margin-block: clamp(2.75rem, 5.5vw, 4.75rem) clamp(3rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.action-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--footer-muted);
+  margin-block-end: var(--space-3);
+}
+
+:root:lang(ar) .action-label {
+  letter-spacing: 0;
+}
+
+.email-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--display-font);
+  font-size: clamp(1.35rem, 4vw, 3rem);
+  line-height: 1.2;
   color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 0.35em;
-  text-decoration-color: rgba(142, 192, 216, 0.6);
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(142, 192, 216, 0.5);
   letter-spacing: -0.015em;
   overflow-wrap: anywhere;
   word-break: break-word;
   max-inline-size: 100%;
-  transition: all var(--duration) var(--ease-craft);
+  transition:
+    color 200ms ease,
+    text-decoration-color 200ms ease;
+
+  .email-arrow {
+    font-family: var(--body-font);
+    font-size: 0.75em;
+    color: #8ec0d8;
+    display: inline-block;
+    transition: transform 200ms var(--ease-snappy);
+  }
+
   &:hover {
     color: #b5e3f5;
     text-decoration-color: #b5e3f5;
-    transform: translateX(6px);
+
+    .email-arrow {
+      transform: translate(4px, -4px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 6px;
   }
 }
-:root:lang(ar) .email-link:hover {
-  transform: translateX(-6px);
+
+:root:lang(ar) .email-link:hover .email-arrow {
+  transform: translate(-4px, -4px);
 }
-.availability {
-  align-self: end;
-  padding: var(--space-6);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius);
-  color: #e2e8f0;
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  max-inline-size: 34ch;
-  display: grid;
-  gap: var(--space-2);
-  &::before {
-    content: 'STATUS';
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #cbd5e1;
-  }
-}
-:root:lang(ar) .availability::before {
-  content: 'الحالة الهندسية';
-  letter-spacing: 0;
-}
-.footer-bottom {
-  grid-column: 1 / -1;
+
+/* --- Section C: Personal Signature & Navigation --- */
+.footer-signature-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
-  padding-block-start: var(--space-8);
-  margin-block-start: var(--space-8);
-  border-block-start: 1px solid rgba(255, 255, 255, 0.12);
+  gap: var(--space-6);
+  padding-block-start: var(--space-6);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.signature-identity {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
   font-size: 0.875rem;
+}
+
+.signature-brand {
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.signature-name {
+  font-family: var(--display-font);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+
+  .brand-dot {
+    color: var(--accent);
+  }
+}
+
+:root:lang(ar) .signature-name {
+  font-family: var(--display-font);
+  letter-spacing: 0;
+  font-style: normal;
+}
+
+.signature-role,
+.signature-copyright {
   color: var(--footer-muted);
-  a {
-    font-weight: 600;
-    color: #ffffff;
-    text-decoration: none;
-    transition: color var(--duration) ease;
-    &:hover {
-      color: var(--accent);
+  font-size: 0.8125rem;
+
+  &::before {
+    content: '·';
+    margin-inline-end: var(--space-3);
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.signature-links {
+  app-profile-links {
+    margin: 0;
+  }
+}
+
+@media (max-width: 45rem) {
+  .contact-footer {
+    padding-block: var(--space-8) var(--space-6);
+  }
+
+  .footer-eyebrow-row {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .footer-action {
+    margin-block: var(--space-6) var(--space-7);
+  }
+
+  .footer-signature-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+
+  .signature-identity {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+
+    .signature-role::before,
+    .signature-copyright::before {
+      display: none;
     }
   }
 }
-@media (max-width: 45rem) {
-  .contact-inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    padding-block: var(--space-8) var(--space-6);
-  }
-  .availability {
-    max-inline-size: none;
-    align-self: stretch;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
+
+@media (prefers-reduced-motion: reduce) {
+  .email-link .email-arrow {
+    transition: none !important;
   }
 }
 .skip-link {

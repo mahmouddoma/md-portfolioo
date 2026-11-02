@@ -1,9 +1,11 @@
 <a class="skip-link" href="#main-content" (click)="skipToContent($event)">{{ content().skip }}</a>
 <header class="site-header-wrapper" [class.is-scrolled]="isScrolled()">
   <div class="site-header container">
-    <a class="identity" [routerLink]="['/', locale().code]">
-      <span class="identity-name">{{ content().name }}</span>
-      <span class="identity-role">{{ content().role }}</span>
+    <a class="identity" [routerLink]="['/', locale().code]" [attr.aria-label]="content().name">
+      <span class="identity-name">
+        {{ content().name }}@if (locale().code === 'en') {<span class="brand-dot">.</span>}
+      </span>
+      <span class="identity-role">{{ content().headerSubtitle }}</span>
     </a>
     <button
       id="menu-toggle"
@@ -11,9 +13,14 @@
       type="button"
       aria-controls="site-navigation"
       [attr.aria-expanded]="menuOpen()"
-      (click)="menuOpen.set(!menuOpen())"
+      [attr.aria-label]="menuOpen() ? content().close : content().menu"
+      (click)="toggleMenu()"
     >
-      {{ menuOpen() ? content().close : content().menu }}
+      <span class="menu-toggle-label">{{ menuOpen() ? content().close : content().menu }}</span>
+      <span class="menu-toggle-icon" aria-hidden="true">
+        <svg class="icon-svg icon-open" [class.is-hidden]="menuOpen()" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        <svg class="icon-svg icon-close" [class.is-hidden]="!menuOpen()" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </span>
     </button>
     <nav
       id="site-navigation"
@@ -21,30 +28,41 @@
       [class.is-open]="menuOpen()"
       [attr.aria-label]="content().navigation"
     >
+      <div class="nav-links">
+        <a
+          class="nav-link"
+          [routerLink]="['/', locale().code, 'work']"
+          routerLinkActive="current"
+          ariaCurrentWhenActive="page"
+          (click)="closeMenu(false)"
+          >{{ content().work }}</a
+        >
+        <a
+          class="nav-link"
+          [routerLink]="['/', locale().code, 'about']"
+          routerLinkActive="current"
+          ariaCurrentWhenActive="page"
+          (click)="closeMenu(false)"
+          >{{ content().about }}</a
+        >
+        <a
+          class="nav-link language-link"
+          [routerLink]="alternateUrl()"
+          [lang]="alternateLocale()"
+          [attr.hreflang]="alternateLocale()"
+          [dir]="alternateLocale() === 'ar' ? 'rtl' : 'ltr'"
+          [attr.aria-label]="alternateLabel() + ' — ' + content().language"
+          (click)="closeMenu(false)"
+        >
+          {{ alternateLabel() }}
+        </a>
+      </div>
       <a
-        [routerLink]="['/', locale().code, 'work']"
-        routerLinkActive="current"
-        ariaCurrentWhenActive="page"
-        >{{ content().work }}</a
+        class="nav-contact nav-contact-cta"
+        [routerLink]="contactUrl()"
+        (click)="closeMenu(false)"
       >
-      <a
-        [routerLink]="['/', locale().code, 'about']"
-        routerLinkActive="current"
-        ariaCurrentWhenActive="page"
-        >{{ content().about }}</a
-      >
-      <a class="nav-contact" [routerLink]="contactUrl()" (click)="menuOpen.set(false)">{{
-        content().contact
-      }}</a>
-      <a
-        class="language-link"
-        [routerLink]="alternateUrl()"
-        [lang]="alternateLocale()"
-        [attr.hreflang]="alternateLocale()"
-        [dir]="alternateLocale() === 'ar' ? 'rtl' : 'ltr'"
-        [attr.aria-label]="alternateLabel() + ' — ' + content().language"
-      >
-        {{ alternateLabel() }}
+        {{ content().navContact }}
       </a>
     </nav>
   </div>
@@ -53,22 +71,45 @@
   <router-outlet />
 </main>
 <footer id="contact" class="contact-footer">
-  <div class="container contact-inner">
-    <div>
-      <h2>{{ content().contactTitle }}</h2>
-      <p class="contact-description">{{ content().contactText }}</p>
+  <div class="container footer-inner">
+    <!-- Section A: Editorial Introduction -->
+    <div class="footer-intro">
+      <div class="footer-eyebrow-row">
+        <span class="footer-eyebrow">{{ content().footerEyebrow }}</span>
+        <span class="footer-availability-dot" aria-hidden="true">•</span>
+        <span class="footer-availability">{{ content().footerAvailability }}</span>
+      </div>
+      <h2 class="footer-headline">{{ content().contactTitle }}</h2>
+      <p class="footer-description">{{ content().contactText }}</p>
+    </div>
+
+    <!-- Section B: Primary Contact Action -->
+    <div class="footer-action">
+      <span class="action-label">{{ content().contactCtaLabel }}</span>
       <a
         class="email-link"
         [href]="'mailto:' + email"
         [attr.aria-label]="content().emailLabel + ': ' + email"
-        ><bdi dir="ltr">{{ email }}</bdi></a
       >
-      <app-profile-links [locale]="locale()" />
+        <span class="email-address"><bdi dir="ltr">{{ email }}</bdi></span>
+        <span class="email-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
-    <p class="availability">{{ content().availability }}</p>
-    <div class="footer-bottom">
-      <a [routerLink]="['/', locale().code]">{{ content().name }}</a>
-      <p>{{ content().footerNote }}</p>
+
+    <!-- Section C: Personal Signature & Navigation -->
+    <div class="footer-signature-row">
+      <div class="signature-identity">
+        <a class="signature-brand" [routerLink]="['/', locale().code]">
+          <span class="signature-name"
+            >{{ content().name }}@if (locale().code === 'en') {<span class="brand-dot">.</span>}</span
+          >
+        </a>
+        <span class="signature-role">{{ content().footerSignatureRole }}</span>
+        <span class="signature-copyright">{{ content().copyright }}</span>
+      </div>
+      <div class="signature-links">
+        <app-profile-links [locale]="locale()" />
+      </div>
     </div>
   </div>
 </footer>

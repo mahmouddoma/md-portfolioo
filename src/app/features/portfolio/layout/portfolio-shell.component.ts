@@ -2,6 +2,7 @@ import {
   DOCUMENT,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Injector,
   PLATFORM_ID,
   afterNextRender,
@@ -25,7 +26,11 @@ import { ProfileLinksComponent } from '../components/profile-links/profile-links
   templateUrl: './portfolio-shell.component.html',
   styleUrl: './portfolio-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '(keydown.escape)': 'closeMenu()' },
+  host: {
+    '(keydown.escape)': 'closeMenu()',
+    '(document:keydown.escape)': 'closeMenu()',
+    '(document:click)': 'onDocumentClick($event)',
+  },
 })
 export class PortfolioShellComponent {
   readonly locale = input.required<Locale>();
@@ -35,6 +40,7 @@ export class PortfolioShellComponent {
   protected readonly email = PROFILE.email;
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly injector = inject(Injector);
   private readonly navigation = toSignal(
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)),
@@ -74,7 +80,7 @@ export class PortfolioShellComponent {
         takeUntilDestroyed(),
       )
       .subscribe((event) => {
-        this.menuOpen.set(false);
+        this.closeMenu(false);
         if (event.id > 1 && !this.router.parseUrl(event.urlAfterRedirects).fragment) {
           afterNextRender(
             () => this.document.getElementById('main-content')?.focus({ preventScroll: true }),
@@ -84,10 +90,29 @@ export class PortfolioShellComponent {
       });
   }
 
-  protected closeMenu(): void {
+  protected onDocumentClick(event: MouseEvent): void {
+    if (!this.menuOpen()) return;
+    const path = event.composedPath();
+    const headerWrapper = this.elementRef.nativeElement.querySelector('.site-header-wrapper');
+    if (headerWrapper && !path.includes(headerWrapper)) {
+      this.closeMenu(false);
+    }
+  }
+
+  protected closeMenu(restoreFocus = true): void {
     if (this.menuOpen()) {
       this.menuOpen.set(false);
-      this.document.getElementById('menu-toggle')?.focus();
+      if (restoreFocus) {
+        this.document.getElementById('menu-toggle')?.focus();
+      }
+    }
+  }
+
+  protected toggleMenu(): void {
+    if (this.menuOpen()) {
+      this.closeMenu(true);
+    } else {
+      this.menuOpen.set(true);
     }
   }
 

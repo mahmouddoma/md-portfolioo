@@ -65,10 +65,17 @@ export interface PortfolioContent {
   readonly certifications: readonly string[];
   readonly languagesTitle: string;
   readonly languages: readonly { readonly name: string; readonly level: string }[];
+  readonly headerSubtitle: string;
+  readonly navContact: string;
+  readonly footerEyebrow: string;
+  readonly footerAvailability: string;
   readonly contactTitle: string;
   readonly contactText: string;
+  readonly contactCtaLabel: string;
   readonly emailLabel: string;
   readonly availability: string;
+  readonly footerSignatureRole: string;
+  readonly copyright: string;
   readonly footerNote: string;
   readonly backToWork: string;
   readonly otherCase: string;
@@ -207,11 +214,18 @@ export const PORTFOLIO_CONTENT = {
       { name: 'Arabic', level: 'Native' },
       { name: 'English', level: 'Professional working proficiency' },
     ],
-    contactTitle: 'Have an engineering role or product in mind?',
+    headerSubtitle: 'ANGULAR FRONTEND ENGINEER',
+    navContact: 'Let’s talk ↗',
+    footerEyebrow: 'CONTACT',
+    footerAvailability: 'OPEN TO OPPORTUNITIES',
+    contactTitle: 'Great work starts with a conversation.',
     contactText:
-      'Looking for an Angular Frontend Engineer for an enterprise team, real-time application, or complex web platform? Let’s talk.',
+      'Angular engineering roles, complex products, and thoughtful frontend experiences.',
+    contactCtaLabel: 'START A CONVERSATION',
     emailLabel: 'Email Mahmoud',
     availability: 'Based in Cairo · Open to remote work and relocation',
+    footerSignatureRole: 'Angular Frontend Engineer',
+    copyright: '© 2026 Mahmoud Doma',
     footerNote: 'Designed and built with care, in English and Arabic.',
     backToWork: 'Back to work',
     otherCase: 'Explore the other featured project',
@@ -369,11 +383,18 @@ export const PORTFOLIO_CONTENT = {
       { name: 'العربية', level: 'اللغة الأم' },
       { name: 'الإنجليزية', level: 'إجادة مهنية للعمل' },
     ],
-    contactTitle: 'تبحث عن مهندس Angular لفريقك؟',
+    headerSubtitle: 'مهندس واجهات أمامية · Angular',
+    navContact: 'تواصل معي ↗',
+    footerEyebrow: 'تواصل',
+    footerAvailability: 'متاح لفرص العمل',
+    contactTitle: 'كل مشروع مميز يبدأ بحوار.',
     contactText:
-      'سواء كانت فرصة عمل لمهندس Angular لتطبيقات مؤسسية، أو نظام ببيانات لحظية، أو منصة ويب معقدة: يسعدني التواصل.',
+      'فرص العمل في هندسة واجهات Angular، والمنتجات الرقمية المعقدة، وتجارب الاستخدام المصممة بعناية.',
+    contactCtaLabel: 'ابدأ محادثة',
     emailLabel: 'راسل محمود',
     availability: 'مقيم في القاهرة · منفتح على العمل عن بُعد والانتقال',
+    footerSignatureRole: 'مهندس واجهات أمامية · Angular',
+    copyright: '© 2026 محمود دومة',
     footerNote: 'تصميم وتنفيذ باهتمام، بالعربية والإنجليزية.',
     backToWork: 'العودة إلى الأعمال',
     otherCase: 'استكشف المشروع المميز الآخر',
